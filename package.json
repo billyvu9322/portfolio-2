@@ -1,0 +1,37 @@
+{
+  "name": "thony32-react",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8900",
+    "build": "next build",
+    "start": "next start -p 8900",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.1.2",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/howler": "^2.2.13",
+    "canvas-confetti": "^1.9.4",
+    "framer-motion": "^13.1.0",
+    "gsap": "^3.13.0",
+    "howler": "^2.2.4",
+    "lenis": "^1.1.20",
+    "lucide-react": "^0.469.0",
+    "next": "15.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "tailwindcss": "^4.3.3",
+    "three": "^0.172.0",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "@types/three": "^0.172.0",
+    "typescript": "^5"
+  }
+}

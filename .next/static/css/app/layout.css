@@ -979,6 +979,9 @@
   .fill-none {
     fill: none;
   }
+  .stroke-accent {
+    stroke: var(--accent);
+  }
   .stroke-current {
     stroke: currentcolor;
   }

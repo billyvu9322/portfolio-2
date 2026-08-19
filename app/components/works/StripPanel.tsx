@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import type { Project } from "../../lib/data";
+import type { Project } from "../../lib/content";
 
 /** Shared inner panel (media + content) used by both list and gallery layouts. */
 export default function StripPanel({

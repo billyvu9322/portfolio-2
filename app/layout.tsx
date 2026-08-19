@@ -1,36 +1,25 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { meta } from "./lib/content";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://thony32.tech"),
-  title: "Anthony MAHEFA | Portfolio",
-  description:
-    "MAHEFASOA Ny Riana Anthony (Hydra) - Portfolio as a Fullstack Developer and DevOps Engineer.",
-  authors: [{ name: "Anthony MAHEFA", url: "https://thony32.tech" }],
-  creator: "Anthony MAHEFA",
-  keywords: [
-    "MAHEFA",
-    "Ny Riana",
-    "Anthony",
-    "Hydra",
-    "Developer",
-    "DevOps",
-    "Portfolio",
-    "Fullstack",
-    "Engineer",
-  ],
-  alternates: { canonical: "https://thony32.tech" },
+  metadataBase: new URL(meta.url),
+  title: meta.title,
+  description: meta.description,
+  authors: [{ name: meta.author, url: meta.url }],
+  creator: meta.author,
+  keywords: meta.keywords,
+  alternates: { canonical: meta.url },
   openGraph: {
-    title: "Anthony MAHEFA | Portfolio",
-    description:
-      "MAHEFASOA Ny Riana Anthony (Hydra) - Portfolio as a Fullstack Developer and DevOps Engineer.",
-    url: "https://thony32.tech",
-    siteName: "Anthony's Portfolio",
+    title: meta.title,
+    description: meta.description,
+    url: meta.url,
+    siteName: meta.siteName,
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://thony32.tech/images/Anthony.svg",
+        url: meta.ogImage,
         width: 1200,
         height: 630,
         alt: "Anthony MAHEFA Portfolio",
@@ -39,11 +28,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@akahydra32",
-    title: "Anthony MAHEFA | Portfolio",
-    description:
-      "MAHEFASOA Ny Riana Anthony (Hydra) - Portfolio as a Fullstack Developer and DevOps Engineer.",
-    images: ["https://thony32.tech/images/Anthony.svg"],
+    creator: meta.twitterCreator,
+    title: meta.title,
+    description: meta.description,
+    images: [meta.ogImage],
   },
   icons: {
     icon: [

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowUpRight, Rows3, LayoutGrid } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects, archive } from "../lib/data";
+import { works, projects, archive } from "../lib/content";
 import StripPanel from "./works/StripPanel";
 import WorksGallery from "./works/WorksGallery";
 
@@ -134,24 +134,24 @@ export default function Works() {
           <div className="flex items-start gap-4 md:gap-6 mb-6 md:mb-8">
             <div className="h-1 w-12 md:w-24 bg-accent origin-left shrink-0 mt-3 md:mt-4" aria-hidden="true" />
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-foreground text-balance">
-              <span className="text-accent">W</span>orks
+              <span className="text-accent">{works.heading.charAt(0)}</span>
+              {works.heading.slice(1)}
             </h2>
           </div>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl text-pretty">
-            Flagship builds
+            {works.subheading}
           </p>
         </header>
 
         <p className="works-intro text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-12 md:mb-16 text-pretty">
-          Three production projects that set the bar — scan the list, open a case
-          study, or switch to gallery mode for the scroll showcase.
+          {works.intro}
         </p>
 
         {canGallery && (
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-muted-foreground max-w-xs text-pretty">
               {view === "list"
-                ? "Scan projects vertically — switch to gallery for the scroll-driven showcase."
+                ? works.galleryHint
                 : "Scroll to move through projects — or use ← → keys."}
             </p>
             <div
@@ -215,10 +215,10 @@ export default function Works() {
 
         <div id="works-archive" className="mt-24 md:mt-32 scroll-mt-28">
           <h3 className="works-archive-heading text-sm font-mono uppercase tracking-widest text-muted-foreground mb-2">
-            Archive
+            {works.archiveHeading}
           </h3>
           <p className="text-muted-foreground text-base mb-8 max-w-xl text-pretty">
-            More builds — each with a case study and live link.
+            {works.archiveIntro}
           </p>
           <ul>
             {archive.map((a, i) => (
@@ -277,22 +277,20 @@ export default function Works() {
 
         <div className="mt-20 text-center">
           <a
-            href="#contact"
+            href={works.cta.href}
             className="ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.97] inline-flex items-center gap-3 px-10 py-4 min-h-11 border border-border rounded-md font-bold text-sm uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
           >
-            Start a conversation
+            {works.cta.label}
             <ArrowUpRight className="works-cta-arrow size-5" aria-hidden="true" />
           </a>
-          <p className="mt-4 text-sm text-muted-foreground">
-            Open to fullstack and DevOps roles
-          </p>
+          <p className="mt-4 text-sm text-muted-foreground">{works.cta.note}</p>
           <a
-            href="https://github.com/thony32"
+            href={works.cta.archiveLink.href}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-3 inline-flex items-center gap-1 text-sm font-mono uppercase tracking-wide text-muted-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm min-h-11"
           >
-            GitHub archive
+            {works.cta.archiveLink.label}
             <ArrowUpRight className="works-cta-arrow size-3.5" aria-hidden="true" />
           </a>
         </div>

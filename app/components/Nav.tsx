@@ -2,13 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
-
-const LINKS = [
-  { id: "home", label: "Home" },
-  { id: "work", label: "Work" },
-  { id: "about", label: "About" },
-  { id: "contact", label: "Contact" },
-];
+import { nav as LINKS } from "../lib/content";
 
 export default function Nav() {
   const [active, setActive] = useState("home");

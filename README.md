@@ -25,15 +25,28 @@ npm run dev      # http://localhost:8900
 npm run build    # production build
 ```
 
+## Editing content
+
+All profile text lives in one file — edit it, no component changes needed:
+
+```
+app/content/profile.json     ← meta, nav, hero, works+projects+archive, about+skills, contact
+app/lib/content.ts           ← typed loader (imports the JSON, exports typed objects)
+```
+
+Change your name, projects, skills, links, SEO meta, etc. there. Types in
+`content.ts` keep edits safe (build fails if a field is malformed).
+
 ## Structure
 
 ```
 app/
-  layout.tsx              metadata + anti-FOUC theme script
+  layout.tsx              metadata (from profile.json) + anti-FOUC theme script
   page.tsx                -> ClientShell
   globals.css             Tailwind v4 source: tokens, @theme, custom classes
+  content/profile.json    all editable copy
   lib/
-    data.ts               projects + archive content
+    content.ts            typed content loader
     stores.ts             zustand: useSection, useMusic
   components/
     ClientShell.tsx       Lenis root, section observer, mounts everything

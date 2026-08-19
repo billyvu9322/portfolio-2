@@ -5,8 +5,18 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { hero } from "../lib/content";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
+
+const WORD_CLASS: Record<string, string> = {
+  solid: "block text-foreground",
+  stroke:
+    "block stroke-text text-transparent hover:text-accent transition-colors duration-500",
+  "stroke-accent":
+    "block stroke-text text-accent hover:text-foreground transition-colors duration-500",
+};
+const WORD_ALIGN = ["self-start", "self-center", "self-end"];
 
 const lineVariants = {
   hidden: { y: "100%", opacity: 0, scale: 0.95 },
@@ -54,49 +64,34 @@ export default function Hero() {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="font-mono text-sm tracking-widest uppercase text-accent mb-2">
-            Antananarivo, Madagascar
+            {hero.location}
           </p>
           <p className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
-            Anthony MAHEFA
+            {hero.name}
           </p>
           <p className="text-lg md:text-xl text-muted-foreground mt-1">
-            Fullstack &amp; DevOps Engineer
+            {hero.role}
           </p>
         </motion.div>
         <h1 className="w-full flex flex-col gap-1 md:gap-0 relative z-10 text-[clamp(2.5rem,10vw,6rem)] font-black leading-[0.85] tracking-[-0.04em] uppercase text-balance">
-          <div className="overflow-hidden pb-4 -mb-4 self-start">
-            <motion.span
-              className="block text-foreground"
-              custom={0}
-              variants={lineVariants}
-              initial="hidden"
-              animate="visible"
+          {hero.headline.map((word, i) => (
+            <div
+              key={word.text}
+              className={`overflow-hidden pb-4 -mb-4 ${
+                WORD_ALIGN[i] ?? "self-start"
+              }`}
             >
-              Creative
-            </motion.span>
-          </div>
-          <div className="overflow-hidden pb-4 -mb-4 self-center">
-            <motion.span
-              className="block stroke-text text-transparent hover:text-accent transition-colors duration-500"
-              custom={1}
-              variants={lineVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              Software
-            </motion.span>
-          </div>
-          <div className="overflow-hidden pb-4 -mb-4 self-end">
-            <motion.span
-              className="block stroke-text text-accent hover:text-foreground transition-colors duration-500"
-              custom={2}
-              variants={lineVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              Engineer
-            </motion.span>
-          </div>
+              <motion.span
+                className={WORD_CLASS[word.type] ?? WORD_CLASS.solid}
+                custom={i}
+                variants={lineVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {word.text}
+              </motion.span>
+            </div>
+          ))}
         </h1>
         <motion.div
           className="mt-12 md:mt-16 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10"
@@ -105,35 +100,36 @@ export default function Hero() {
           transition={{ delay: 0.45, duration: 0.6, ease: EASE }}
         >
           <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-xl text-pretty">
-            I build production web apps with React, Next.js, and solid
-            infrastructure — from Webcup-winning products to client-ready
-            deployments.
+            {hero.description}
           </p>
           <div className="flex flex-col gap-4 shrink-0">
             <div className="flex flex-wrap gap-4">
               <a
-                href="#work"
+                href={hero.primaryCta.href}
                 className="duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.97] inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-md font-semibold text-sm uppercase tracking-wide hover:opacity-90 transition-opacity"
               >
-                View Work
+                {hero.primaryCta.label}
                 <ArrowUpRight className="size-4" aria-hidden="true" />
               </a>
               <a
-                href="#contact"
+                href={hero.secondaryCta.href}
                 className="duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.97] inline-flex items-center gap-2 px-8 py-4 border border-border bg-background rounded-md font-semibold text-sm uppercase tracking-wide hover:bg-accent hover:text-accent-foreground transition-colors"
               >
-                Contact
+                {hero.secondaryCta.label}
               </a>
             </div>
             <p className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-mono uppercase tracking-wide text-muted-foreground">
-              <a
-                href="https://www.linkedin.com/in/anthony-mahefasoa-3672361b2/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
-              >
-                LinkedIn
-              </a>
+              {hero.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                >
+                  {link.label}
+                </a>
+              ))}
             </p>
           </div>
         </motion.div>

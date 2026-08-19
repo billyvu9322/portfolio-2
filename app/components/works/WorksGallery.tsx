@@ -6,7 +6,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLenis } from "lenis/react";
-import { projects } from "../../lib/data";
+import { projects } from "../../lib/content";
 
 export default function WorksGallery() {
   const container = useRef<HTMLDivElement>(null);

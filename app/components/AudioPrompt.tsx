@@ -34,7 +34,9 @@ export default function AudioPrompt() {
     setLoading(true);
     setProgress(0);
     const id = setInterval(() => {
-      setProgress((p) => (p >= 90 ? (clearInterval(id), 90) : p + 15 * Math.random()));
+      setProgress((p) =>
+        p >= 90 ? (clearInterval(id), 90) : p + 15 * Math.random(),
+      );
     }, 100);
     toggleSound();
     setTimeout(() => {
@@ -54,7 +56,7 @@ export default function AudioPrompt() {
     <AnimatePresence>
       {show && (
         <motion.div
-          className="fixed bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-[1000] w-[calc(100%-2rem)] max-w-md"
+          className="fixed bottom-6 sm:bottom-8 left-1/2 z-[1000] w-[calc(100%-2rem)] max-w-md"
           initial={{ opacity: 0, y: 40, x: "-50%" }}
           animate={{ opacity: 1, y: 0, x: "-50%" }}
           exit={{ opacity: 0, y: 40, x: "-50%" }}
@@ -72,7 +74,10 @@ export default function AudioPrompt() {
                 )}
                 <div className="relative rounded-full bg-gradient-to-br from-primary to-primary/80 p-3 text-primary-foreground shadow-lg">
                   {loading ? (
-                    <Loader2 size={20} className="animate-spin drop-shadow-sm" />
+                    <Loader2
+                      size={20}
+                      className="animate-spin drop-shadow-sm"
+                    />
                   ) : (
                     <Volume2 size={20} className="drop-shadow-sm" />
                   )}
@@ -107,7 +112,7 @@ export default function AudioPrompt() {
                 <motion.button
                   onClick={enable}
                   disabled={loading}
-                  className="rounded-full bg-gradient-to-r from-primary to-primary/90 px-4 sm:px-6 py-2 text-xs sm:text-sm font-bold text-primary-foreground hover:from-primary/90 hover:to-primary/80 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="rounded-full bg-gradient-to-r from-primary to-primary/90 px-0 sm:px-6 py-2 text-xs sm:text-sm font-bold text-primary-foreground w-[6.25rem] sm:w-auto text-center hover:from-primary/90 hover:to-primary/80 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                   whileHover={{ scale: loading ? 1 : 1.05 }}
                   whileTap={{ scale: loading ? 1 : 0.95 }}
                 >
@@ -120,7 +125,10 @@ export default function AudioPrompt() {
                   whileTap={{ scale: 0.9 }}
                   title="Dismiss"
                 >
-                  <X size={18} />
+                  <X
+                    size={16}
+                    className="text-muted-foreground hover:text-foreground"
+                  />
                 </motion.button>
               </motion.div>
             </div>

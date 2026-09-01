@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Globe } from "lucide-react";
 import { contact } from "../lib/content";
 
 const ICONS: Record<string, React.ReactNode> = {
@@ -20,6 +20,7 @@ const ICONS: Record<string, React.ReactNode> = {
       clipRule="evenodd"
     />
   ),
+  globe: <Globe size="15" />,
 };
 
 export default function Contact() {
@@ -51,12 +52,14 @@ export default function Contact() {
               />
             </a>
             <p className="mt-6 md:mt-8">
-              <a
-                href={`mailto:${contact.email}`}
-                className="font-mono text-sm md:text-base text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
-              >
-                {contact.email}
-              </a>
+              <div className="flex">
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="font-mono text-sm md:text-base text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                >
+                  Contact via email {contact.email}
+                </a>
+              </div>
             </p>
             <div className="mt-10 md:mt-12 pt-8 border-t border-border/40 flex flex-col sm:flex-row flex-wrap gap-4">
               {contact.socials.map((s) => (

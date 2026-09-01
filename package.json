@@ -1,14 +1,22 @@
 {
-  "name": "thony32-react",
+  "name": "binhvu-portfolio",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 8900",
-    "build": "next build",
+    "profile:sync": "node scripts/sync-profile.mjs",
+    "dev": "npm run profile:sync && next dev -p 8900",
+    "build": "npm run profile:sync && next build",
     "start": "next start -p 8900",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "npm run build && npx wrangler pages deploy build --project-name=porfolio --branch=main --commit-dirty=true",
+    "worker:dev": "npx wrangler@4.34.0 dev",
+    "worker:deploy": "npx wrangler@4.34.0 deploy",
+    "wrangler:deploy": "npx wrangler@4.34.0 deploy",
+    "worker:typecheck": "tsc -p worker/tsconfig.json --noEmit",
+    "worker:types": "npx wrangler@4.34.0 types"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.19.16",
     "@react-three/drei": "^10.7.8",
     "@react-three/fiber": "^9.1.2",
     "@tailwindcss/postcss": "^4.3.3",

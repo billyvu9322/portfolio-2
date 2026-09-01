@@ -30,6 +30,7 @@ const CAM: Record<SectionId, { z: number; y: number; intensity: number }> = {
   home: { z: 5, y: 0, intensity: 0.55 },
   work: { z: 4.4, y: -0.25, intensity: 0.9 },
   about: { z: 5.4, y: 0.15, intensity: 0.5 },
+  skills: { z: 5.8, y: 0.28, intensity: 0.46 },
   contact: { z: 6.2, y: 0.4, intensity: 0.38 },
 };
 

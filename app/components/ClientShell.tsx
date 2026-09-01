@@ -12,11 +12,13 @@ import Nav from "./Nav";
 import Hero from "./Hero";
 import Works from "./Works";
 import About from "./About";
+import Skills from "./Skills";
 import Contact from "./Contact";
 import Cursor from "./Cursor";
 import Loader from "./Loader";
 import ThemeAudioDock from "./ThemeAudioDock";
 import AudioPrompt from "./AudioPrompt";
+import PortfolioAIChat from "./PortfolioAIChat";
 
 const WebGLBackground = dynamic(() => import("./webgl/WebGLBackground"), {
   ssr: false,
@@ -40,7 +42,7 @@ function LenisScrollTriggerSync() {
 function SectionObserver() {
   const setSection = useSection((s) => s.setSection);
   useEffect(() => {
-    const ids: SectionId[] = ["home", "work", "about", "contact"];
+    const ids: SectionId[] = ["home", "work", "about", "skills", "contact"];
     const els = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
@@ -59,7 +61,7 @@ function SectionObserver() {
         });
         if (max > 0) setSection(best);
       },
-      { rootMargin: "-40% 0px -45% 0px", threshold: [0, 0.25, 0.5] }
+      { rootMargin: "-40% 0px -45% 0px", threshold: [0, 0.25, 0.5] },
     );
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
@@ -86,8 +88,10 @@ export default function ClientShell() {
           <Hero />
           <Works />
           <About />
+          <Skills />
           <Contact />
         </main>
+        <PortfolioAIChat />
         <ThemeAudioDock />
       </div>
       <AudioPrompt />

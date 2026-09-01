@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 
-export type SectionId = "home" | "work" | "about" | "contact";
+export type SectionId = "home" | "work" | "about" | "skills" | "contact";
 
 type SectionState = {
   section: SectionId;

@@ -1,6 +1,6 @@
 import data from "../content/profile.json";
 
-export type NavLink = { id: string; label: string };
+export type NavLink = { id: string; label: string, disabled?: boolean };
 
 export type HeadlineWord = {
   text: string;
@@ -32,6 +32,27 @@ export type ArchiveItem = {
 };
 
 export type Skill = { title: string; description: string };
+
+export type SkillMatrixGroup = {
+  title: string;
+  description: string;
+  items: string[];
+};
+
+export type WorkingStyle = {
+  label: string;
+  detail: string;
+};
+
+export type SkillsContent = {
+  heading: string;
+  subheading: string;
+  intro: string;
+  positioning: string;
+  matrix: SkillMatrixGroup[];
+  workingStyle: WorkingStyle[];
+  availability: string;
+};
 
 export type SocialLink = {
   label: string;
@@ -85,6 +106,7 @@ export type Profile = {
     proof: string;
     skills: Skill[];
   };
+  skills: SkillsContent;
   contact: {
     eyebrow: string;
     heading: string;
@@ -97,6 +119,6 @@ export type Profile = {
 export const profile = data as Profile;
 
 // convenience named exports
-export const { nav, hero, works, about, contact, meta } = profile;
+export const { nav, hero, works, about, skills, contact, meta } = profile;
 export const projects = works.projects;
 export const archive = works.archive;

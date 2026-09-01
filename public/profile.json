@@ -1,0 +1,311 @@
+{
+  "meta": {
+    "title": "Tat Binh Vu | Full-Stack Software Engineer",
+    "description": "Tat Binh Vu is a Full-Stack Software Engineer with 4+ years of experience building scalable web applications, enterprise integrations, and AI-powered automation systems.",
+    "url": "https://binhvu.nimo.io.vn",
+    "siteName": "Tat Binh Vu | Portfolio",
+    "author": "Tat Binh Vu",
+    "twitterCreator": "@tatbinhvu",
+    "keywords": [
+      "Tat Binh Vu",
+      "Full-Stack Software Engineer",
+      "Full Stack Engineer",
+      "Product Development",
+      "CI/CD",
+      "Microsoft MVP",
+      ".NET",
+      ".NET 8",
+      "Node.js",
+      "Fastify",
+      "React",
+      "Next.js",
+      "AI Automation",
+      "Agentic AI",
+      "OpenAI",
+      "TypeScript",
+      "Shopify App Development",
+      "PostgreSQL",
+      "SQL Server",
+      "Wix App Development",
+      "Shopify Plus",
+      "Hanoi"
+    ],
+    "ogImage": "/images/print.webp"
+  },
+
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home"
+    },
+    {
+      "id": "work",
+      "label": "Work"
+    },
+    {
+      "id": "about",
+      "label": "About"
+    },
+    {
+      "id": "skills",
+      "label": "Skills"
+    },
+    {
+      "id": "contact",
+      "label": "Contact"
+    }
+  ],
+
+  "hero": {
+    "location": "Hanoi Capital Region, Vietnam",
+    "name": "Tat Binh Vu",
+    "role": "Full-Stack Software Engineer",
+    "headline": [
+      {
+        "text": "Creative",
+        "type": "solid"
+      },
+      {
+        "text": "Software",
+        "type": "stroke"
+      },
+      {
+        "text": "Engineer",
+        "type": "stroke-accent"
+      }
+    ],
+    "description": "I build and scale web products, combining full-stack engineering, scalable architectures, enterprise integrations, and AI-powered automation to turn complex requirements into reliable solutions.",
+    "primaryCta": {
+      "label": "View Work",
+      "href": "#work"
+    },
+    "secondaryCta": {
+      "label": "Contact",
+      "href": "#contact"
+    },
+    "links": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/tat-binh-vu-7a28a817b/"
+      }
+    ]
+  },
+
+  "works": {
+    "heading": "Works",
+    "subheading": "Selected builds",
+    "intro": "Selected projects across web applications, e-commerce, systems integration, and AI-powered products.",
+    "galleryHint": "Drag or scroll to move through projects — or use arrow keys.",
+
+    "projects": [
+      {
+        "title": "Request a Quote",
+        "year": "2026",
+        "tagline": "Shopify app for price visibility control",
+        "description": "Built a Shopify app with React, .NET 8, and PostgreSQL to help merchants control product price visibility through configurable pricing rules.",
+        "tags": [
+          "React",
+          ".NET 8",
+          "PostgreSQL",
+          "Shopify"
+        ],
+        "caseStudy": "/work/madgic-hide-price",
+        "liveSite": "https://apps.shopify.com/madgic-hide-price?surface_intra_position=2&surface_type=partners&surface_version=simplified",
+        "image": "/images/quote.webp",
+        "imageAlt": "Madgic Hide Price Shopify app preview"
+      },
+
+      {
+        "title": "Social Widgets",
+        "year": "2026",
+        "tagline": "TikTok and Instagram Feed app for Wix",
+        "description": "Built a Wix app with React, .NET 8, and SQL Server for displaying TikTok and Instagram content through merchant-configurable widgets.",
+        "tags": [
+          "React",
+          ".NET 8",
+          "SQL Server",
+          "Wix"
+        ],
+        "caseStudy": "/work/orichi-social-widgets",
+        "liveSite": "https://www.wix.com/app-market/orichi-social-widgets?appIndex=16&referral=search-result&referralSectionName=Tiktok",
+        "image": "/images/tiktok.webp",
+        "imageAlt": "Social Widgets TikTok and Instagram Feed Wix app preview"
+      },
+
+      {
+        "title": "Hanguru",
+        "year": "2026",
+        "tagline": "Korean learning platform",
+        "description": "Built a Korean learning platform with React, Fastify, Node.js, and PostgreSQL, covering the web application, backend services, and structured learning content.",
+        "tags": [
+          "React",
+          "Fastify",
+          "Node.js",
+          "PostgreSQL"
+        ],
+        "caseStudy": "/work/hanguru",
+        "liveSite": "https://hanguru.nimo.io.vn/",
+        "image": "/images/hanguru.webp",
+        "imageAlt": "Hanguru Korean learning website preview"
+      },
+
+      {
+        "title": "Harness Academy",
+        "year": "2026",
+        "tagline": "AI-assisted learning platform",
+        "description": "Built an AI-assisted learning platform with React, TypeScript, Fastify, Node.js, PostgreSQL, and OpenAI for guided lessons, practice support, and structured learning workflows.",
+        "tags": [
+          "React",
+          "TypeScript",
+          "Fastify",
+          "Node.js",
+          "PostgreSQL",
+          "OpenAI"
+        ],
+        "caseStudy": "/work/harness-academy",
+        "liveSite": "https://harness-academy.nimo.io.vn/",
+        "image": "/images/harness.webp",
+        "imageAlt": "Harness Academy AI-assisted learning platform preview"
+      }
+    ],
+
+    "archiveHeading": "Archive",
+    "archiveIntro": "More selected builds and technical work.",
+    "archive": [],
+
+    "cta": {
+      "label": "Start a conversation",
+      "href": "#contact",
+      "note": "Open to Full-Time Remote, Contract Roles & Technical Consulting",
+      "archiveLink": {
+        "label": "Portfolio",
+        "href": "https://binhvu.nimo.io.vn"
+      }
+    }
+  },
+
+  "about": {
+    "heading": "About",
+    "subheading": "Software Engineer & Builder",
+
+    "bio": "Full-Stack Software Engineer with 4+ years of experience building scalable web applications, enterprise integrations, and AI-powered automation systems.",
+
+    "proofLabel": "Proof",
+
+    "proof": "Microsoft MVP · Bachelor of Information Technology, University of Transport and Communications",
+
+    "skills": [
+      {
+        "title": "Full-Stack Software Engineering",
+        "description": "Designing, building, and maintaining scalable web applications with a focus on reliability, performance, and maintainability."
+      },
+
+      {
+        "title": "E-Commerce & Systems Integration",
+        "description": "Developing Shopify and Wix applications, integrating multi-channel APIs, third-party services, and SaaS platforms."
+      },
+
+      {
+        "title": "AI Engineering & Automation",
+        "description": "Building agentic workflows, AI-powered automations, and custom MCP tools to improve development and operational workflows."
+      }
+    ]
+  },
+
+  "skills": {
+    "heading": "Skills",
+    "subheading": "Technical matrix",
+    "intro": "A practical stack for building, integrating, automating, and shipping production software.",
+
+    "positioning": "Core strengths across application engineering, cloud and data systems, e-commerce integrations, and AI-powered workflows.",
+
+    "matrix": [
+      {
+        "title": "Languages & Frameworks",
+        "description": "Backend, frontend, and application development across modern web technologies.",
+        "items": [
+          "C# / .NET",
+          "Node.js (Fastify)",
+          "TypeScript",
+          "Next.js",
+          "React",
+          "Python"
+        ]
+      },
+
+      {
+        "title": "Cloud & Data",
+        "description": "Cloud platforms, data stores, containers, and delivery systems for scalable applications.",
+        "items": [
+          "Azure",
+          "PostgreSQL",
+          "SQL Server",
+          "MongoDB",
+          "Redis",
+          "Microservices",
+          "Docker",
+          "CI/CD"
+        ]
+      },
+
+      {
+        "title": "AI & Integrations",
+        "description": "Practical AI workflows, automation, and platform integrations for modern products.",
+        "items": [
+          "Shopify Apps",
+          "Wix Apps",
+          "OpenAI",
+          "Agentic",
+          "MCP Servers",
+          "AI Workflows",
+          "Harness Design"
+        ]
+      }
+    ],
+
+    "workingStyle": [
+      {
+        "label": "AI-assisted",
+        "detail": "Using AI-powered workflows to accelerate development while maintaining code quality."
+      },
+
+      {
+        "label": "Async-first",
+        "detail": "Clear communication across distributed product teams."
+      },
+
+      {
+        "label": "Deep context",
+        "detail": "Understanding the codebase and existing architecture before making significant changes."
+      },
+
+      {
+        "label": "Business focus",
+        "detail": "Technical decisions guided by product and business requirements."
+      }
+    ],
+
+    "availability": "Based in Hanoi (GMT+7) · Open to Full-Time Remote, Contract Roles & Technical Consulting"
+  },
+
+  "contact": {
+    "eyebrow": "Open to Full-Time Remote, Contract Roles & Technical Consulting",
+    "heading": "Let's work together",
+    "email": "binhhp20@gmail.com",
+
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/tat-binh-vu-7a28a817b/",
+        "icon": "linkedin"
+      },
+      {
+        "label": "Portfolio",
+        "href": "https://binhvu.nimo.io.vn",
+        "icon": "globe"
+      }
+    ],
+
+    "copyright": "© 2026 Tat Binh Vu"
+  }
+}

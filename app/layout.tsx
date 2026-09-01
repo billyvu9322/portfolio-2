@@ -35,8 +35,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon.ico", sizes: "256x256", type: "image/x-icon" },
-      { url: "/images/Anthony.svg" },
     ],
   },
 };

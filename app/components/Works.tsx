@@ -23,7 +23,9 @@ export default function Works() {
 
   useEffect(() => {
     const mobile = window.matchMedia("(max-width: 767px)").matches;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (mobile || reduced) {
       setCanGallery(false);
       setView("list");
@@ -43,7 +45,9 @@ export default function Works() {
     if (view !== "list" || !root.current) return;
     const scope = root.current;
     const media = Array.from(
-      scope.querySelectorAll<HTMLElement>(".works-view-swap .project-strip-media")
+      scope.querySelectorAll<HTMLElement>(
+        ".works-view-swap .project-strip-media",
+      ),
     );
     const io = new IntersectionObserver(
       (entries) => {
@@ -52,35 +56,65 @@ export default function Works() {
             (e.target as HTMLElement).dataset.inView = "true";
         });
       },
-      { threshold: 0.35 }
+      { threshold: 0.35 },
     );
     media.forEach((m) => io.observe(m));
 
     const ctx = gsap.context(() => {
-      scope.querySelectorAll(".works-view-swap .project-strip").forEach((strip) => {
-        const shell = strip.querySelector(".project-strip-device-shell");
-        const device = strip.querySelector(".project-strip-device");
-        const content = strip.querySelector(".project-strip-content");
-        const tags = strip.querySelectorAll(".works-tag");
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: strip,
-            start: "top 84%",
-            toggleActions: "play none none reverse",
-          },
+      scope
+        .querySelectorAll(".works-view-swap .project-strip")
+        .forEach((strip) => {
+          const shell = strip.querySelector(".project-strip-device-shell");
+          const device = strip.querySelector(".project-strip-device");
+          const content = strip.querySelector(".project-strip-content");
+          const tags = strip.querySelectorAll(".works-tag");
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: strip,
+              start: "top 84%",
+              toggleActions: "play none none reverse",
+            },
+          });
+          if (shell)
+            tl.fromTo(
+              shell,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.55, ease: "expo.out" },
+              0,
+            );
+          if (device)
+            tl.fromTo(
+              device,
+              { clipPath: "inset(12% 12% 12% 12% round 1.35rem)", scale: 0.92 },
+              {
+                clipPath: "inset(0% 0% 0% 0% round 1.35rem)",
+                scale: 1,
+                duration: 0.55,
+                ease: "expo.out",
+              },
+              0.04,
+            );
+          if (content)
+            tl.fromTo(
+              content,
+              { x: -20 },
+              { x: 0, duration: 0.55, ease: "expo.out" },
+              0.14,
+            );
+          if (tags.length)
+            tl.fromTo(
+              tags,
+              { opacity: 0.6, y: 8 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.35,
+                stagger: 0.05,
+                ease: "expo.out",
+              },
+              0.24,
+            );
         });
-        if (shell) tl.fromTo(shell, { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "expo.out" }, 0);
-        if (device)
-          tl.fromTo(
-            device,
-            { clipPath: "inset(12% 12% 12% 12% round 1.35rem)", scale: 0.92 },
-            { clipPath: "inset(0% 0% 0% 0% round 1.35rem)", scale: 1, duration: 0.55, ease: "expo.out" },
-            0.04
-          );
-        if (content) tl.fromTo(content, { x: -20 }, { x: 0, duration: 0.55, ease: "expo.out" }, 0.14);
-        if (tags.length)
-          tl.fromTo(tags, { opacity: 0.6, y: 8 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.05, ease: "expo.out" }, 0.24);
-      });
     }, scope);
 
     return () => {
@@ -103,16 +137,41 @@ export default function Works() {
             clipPath: "inset(0 0 0% 0)",
             duration: 0.55,
             ease: "expo.out",
-            scrollTrigger: { trigger: intro, start: "top 90%", toggleActions: "play none none reverse" },
-          }
+            scrollTrigger: {
+              trigger: intro,
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+          },
         );
       const archiveEl = scope.querySelector("#works-archive");
       const heading = scope.querySelector(".works-archive-heading");
       if (heading && archiveEl)
-        gsap.fromTo(heading, { opacity: 0.6, x: -12 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out", scrollTrigger: { trigger: archiveEl, start: "top 88%" } });
+        gsap.fromTo(
+          heading,
+          { opacity: 0.6, x: -12 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.35,
+            ease: "expo.out",
+            scrollTrigger: { trigger: archiveEl, start: "top 88%" },
+          },
+        );
       const items = scope.querySelectorAll(".works-archive-item");
       if (items.length && archiveEl)
-        gsap.fromTo(items, { opacity: 0.7, x: -20 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out", stagger: { each: 0.05 }, scrollTrigger: { trigger: archiveEl, start: "top 84%" } });
+        gsap.fromTo(
+          items,
+          { opacity: 0.7, x: -20 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.35,
+            ease: "expo.out",
+            stagger: { each: 0.05 },
+            scrollTrigger: { trigger: archiveEl, start: "top 84%" },
+          },
+        );
     }, scope);
     return () => ctx.revert();
   }, []);
@@ -130,9 +189,15 @@ export default function Works() {
       className="relative py-24 md:py-32 px-4 md:px-8 lg:px-20 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto relative z-10">
-        <header className="mb-16 md:mb-20 pb-12 border-b border-border/30 " data-reveal>
+        <header
+          className="mb-16 md:mb-20 pb-12 border-b border-border/30 "
+          data-reveal
+        >
           <div className="flex items-start gap-4 md:gap-6 mb-6 md:mb-8">
-            <div className="h-1 w-12 md:w-24 bg-accent origin-left shrink-0 mt-3 md:mt-4" aria-hidden="true" />
+            <div
+              className="h-1 w-12 md:w-24 bg-accent origin-left shrink-0 mt-3 md:mt-4"
+              aria-hidden="true"
+            />
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-foreground text-balance">
               <span className="text-accent">{works.heading.charAt(0)}</span>
               {works.heading.slice(1)}
@@ -213,67 +278,84 @@ export default function Works() {
           </div>
         )}
 
-        <div id="works-archive" className="mt-24 md:mt-32 scroll-mt-28">
-          <h3 className="works-archive-heading text-sm font-mono uppercase tracking-widest text-muted-foreground mb-2">
-            {works.archiveHeading}
-          </h3>
-          <p className="text-muted-foreground text-base mb-8 max-w-xl text-pretty">
-            {works.archiveIntro}
-          </p>
-          <ul>
-            {archive.map((a, i) => (
-              <li
-                key={a.title}
-                className="works-archive-item group border-b border-border/40 last:border-b-0"
-                style={{ ["--i" as string]: String(i) }}
-              >
-                <div className="relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 py-6 md:py-7 transition-colors duration-200 group-hover:bg-muted/30 group-focus-within:bg-muted/30 -mx-3 px-3 rounded-lg">
-                  <span
-                    className="works-archive-line absolute bottom-0 left-3 right-3 h-px bg-accent pointer-events-none"
-                    aria-hidden="true"
-                  />
-                  <div className="flex items-start sm:items-center gap-4 min-w-0 flex-1">
-                    <div className="works-archive-thumb relative size-14 shrink-0 overflow-hidden rounded-md border border-border/50 bg-muted">
-                      <Image alt="" fill className="object-cover object-top" sizes="56px" src={a.image} />
+        {/* Archive */}
+        {archive?.length ? (
+          <div id="works-archive" className="mt-24 md:mt-32 scroll-mt-28">
+            <h3 className="works-archive-heading text-sm font-mono uppercase tracking-widest text-muted-foreground mb-2">
+              {works.archiveHeading}
+            </h3>
+            <p className="text-muted-foreground text-base mb-8 max-w-xl text-pretty">
+              {works.archiveIntro}
+            </p>
+            <ul>
+              {archive?.map((a, i) => (
+                <li
+                  key={a.title}
+                  className="works-archive-item group border-b border-border/40 last:border-b-0"
+                  style={{ ["--i" as string]: String(i) }}
+                >
+                  <div className="relative flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 py-6 md:py-7 transition-colors duration-200 group-hover:bg-muted/30 group-focus-within:bg-muted/30 -mx-3 px-3 rounded-lg">
+                    <span
+                      className="works-archive-line absolute bottom-0 left-3 right-3 h-px bg-accent pointer-events-none"
+                      aria-hidden="true"
+                    />
+                    <div className="flex items-start sm:items-center gap-4 min-w-0 flex-1">
+                      <div className="works-archive-thumb relative size-14 shrink-0 overflow-hidden rounded-md border border-border/50 bg-muted">
+                        <Image
+                          alt=""
+                          fill
+                          className="object-cover object-top"
+                          sizes="56px"
+                          src={a.image}
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <a
+                          className="font-black text-lg md:text-xl uppercase tracking-tight text-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm text-balance"
+                          href={a.caseStudy}
+                        >
+                          {a.title}
+                        </a>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          {a.year} · {a.tagline}
+                        </p>
+                        <p className="mt-2 font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                          {a.stack}
+                        </p>
+                      </div>
                     </div>
-                    <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-4 shrink-0 sm:pl-0 pl-[4.5rem]">
                       <a
-                        className="font-black text-lg md:text-xl uppercase tracking-tight text-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm text-balance"
+                        className="inline-flex items-center gap-1 text-sm font-mono uppercase tracking-wide text-muted-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm min-h-11"
                         href={a.caseStudy}
                       >
-                        {a.title}
+                        Case study
+                        <ArrowUpRight
+                          className="works-cta-arrow size-4"
+                          aria-hidden="true"
+                        />
                       </a>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {a.year} · {a.tagline}
-                      </p>
-                      <p className="mt-2 font-mono text-xs uppercase tracking-wide text-muted-foreground">
-                        {a.stack}
-                      </p>
+                      <a
+                        href={a.liveSite}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm font-mono uppercase tracking-wide text-muted-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm min-h-11"
+                      >
+                        Live site
+                        <ArrowUpRight
+                          className="works-cta-arrow size-4"
+                          aria-hidden="true"
+                        />
+                      </a>
                     </div>
                   </div>
-                  <div className="flex flex-wrap items-center gap-4 shrink-0 sm:pl-0 pl-[4.5rem]">
-                    <a
-                      className="inline-flex items-center gap-1 text-sm font-mono uppercase tracking-wide text-muted-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm min-h-11"
-                      href={a.caseStudy}
-                    >
-                      Case study
-                      <ArrowUpRight className="works-cta-arrow size-4" aria-hidden="true" />
-                    </a>
-                    <a
-                      href={a.liveSite}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm font-mono uppercase tracking-wide text-muted-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm min-h-11"
-                    >
-                      Live site
-                      <ArrowUpRight className="works-cta-arrow size-4" aria-hidden="true" />
-                    </a>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <></>
+        )}
 
         <div className="mt-20 text-center">
           <a
@@ -281,7 +363,10 @@ export default function Works() {
             className="ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.97] inline-flex items-center gap-3 px-10 py-4 min-h-11 border border-border rounded-md font-bold text-sm uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
           >
             {works.cta.label}
-            <ArrowUpRight className="works-cta-arrow size-5" aria-hidden="true" />
+            <ArrowUpRight
+              className="works-cta-arrow size-5"
+              aria-hidden="true"
+            />
           </a>
           <p className="mt-4 text-sm text-muted-foreground">{works.cta.note}</p>
           <a
@@ -291,7 +376,10 @@ export default function Works() {
             className="mt-3 inline-flex items-center gap-1 text-sm font-mono uppercase tracking-wide text-muted-foreground hover:text-accent transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm min-h-11"
           >
             {works.cta.archiveLink.label}
-            <ArrowUpRight className="works-cta-arrow size-3.5" aria-hidden="true" />
+            <ArrowUpRight
+              className="works-cta-arrow size-3.5"
+              aria-hidden="true"
+            />
           </a>
         </div>
       </div>

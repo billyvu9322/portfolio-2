@@ -1,0 +1,13 @@
+# Worker secrets. Copy to .dev.vars for local development; never commit .dev.vars.
+LLM_API_KEY="your-provider-key"
+RESEND_API_KEY="re_..."
+TURNSTILE_SECRET_KEY="0x4AAAA..."
+
+# Public/local Worker variables.
+LLM_BASE_URL="https://9router.nimo.io.vn/v1"
+LLM_MODEL="cx/gpt-5.5"
+ALLOWED_ORIGIN="http://localhost:8900"
+PROFILE_URL="http://localhost:8900/profile.json"
+EMAIL_FROM="Mochi <mochi@your-verified-domain.com>"
+OWNER_EMAIL="your-email@example.com"
+TURNSTILE_SITE_KEY="your-turnstile-site-key"

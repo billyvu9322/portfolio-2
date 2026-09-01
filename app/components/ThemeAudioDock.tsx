@@ -40,8 +40,8 @@ export default function ThemeAudioDock() {
     [0, 100, 200].forEach((delay) =>
       setTimeout(
         () => confetti({ particleCount: 50, spread: 60, colors }),
-        delay
-      )
+        delay,
+      ),
     );
   };
 
@@ -89,7 +89,11 @@ export default function ThemeAudioDock() {
         aria-label="Switch to Dark Mode"
       >
         <div className="w-6 overflow-hidden max-sm:scale-90 lg:translate-y-1 group">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               opacity="0.5"
               fillRule="evenodd"

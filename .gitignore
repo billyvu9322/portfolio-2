@@ -45,6 +45,7 @@ Thumbs.db
 !package-lock.json
 !tsconfig*.json
 !postcss.config.json
+!profile.json
 
 # turbo
 .turbo
@@ -53,13 +54,18 @@ node_modules/
 .pnpm-store/
 
 # Build output
+.next/
 dist/
 build/
 *.tsbuildinfo
 
+wrangler.toml
 # Env
 .env
 .env.local
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
 .env.*.local
 .env.production
 .env.development

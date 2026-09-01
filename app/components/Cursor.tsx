@@ -35,13 +35,13 @@ export default function Cursor() {
     <>
       <div
         ref={dot}
-        className="max-lg:hidden fixed top-0 left-0 w-2 h-2 bg-primary rounded-full pointer-events-none z-9999 mix-blend-difference"
+        className="max-lg:hidden fixed top-0 left-0 w-2 h-2 bg-white dark:bg-primary rounded-full pointer-events-none z-9999 mix-blend-difference"
         style={{ transform: "translate3d(-4px, -4px, 0)" }}
       />
       <div
         ref={ring}
-        className={`max-lg:hidden fixed top-0 left-0 border rounded-full pointer-events-none z-9998 mix-blend-difference transition-all duration-300 ease-out flex items-center justify-center ${
-          hover ? "w-16 h-16 border-primary" : "w-8 h-8 bg-transparent"
+        className={`max-lg:hidden fixed top-0 left-0 border border-white dark:border-primary rounded-full pointer-events-none z-9998 mix-blend-difference transition-all duration-300 ease-out flex items-center justify-center ${
+          hover ? "w-16 h-16 border-white dark:border-primary" : "w-8 h-8 bg-transparent"
         }`}
         style={{ transform: "translate3d(0px, 0px, 0) translate(-50%, -50%)" }}
       />

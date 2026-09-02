@@ -4,6 +4,17 @@ type StreamEvent = {
   success?: unknown;
 };
 
+export class PortfolioChatError extends Error {
+  constructor(
+    message: string,
+    readonly status?: number,
+    readonly code?: string,
+  ) {
+    super(message);
+    this.name = "PortfolioChatError";
+  }
+}
+
 export async function askPortfolioAI(
   question: string,
   onChunk: (chunk: string) => void,
@@ -25,10 +36,12 @@ export async function askPortfolioAI(
     const payload = (await response.json().catch(() => null)) as {
       error?: unknown;
     } | null;
-    throw new Error(
+    throw new PortfolioChatError(
       typeof payload?.error === "string"
         ? payload.error
         : "AI temporarily unavailable",
+      response.status,
+      response.status === 429 ? "DAILY_LIMIT" : undefined,
     );
   }
 

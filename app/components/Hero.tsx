@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { hero } from "../lib/content";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
@@ -56,7 +57,10 @@ export default function Hero() {
       className="relative min-h-[100dvh] flex flex-col justify-center px-4 md:px-12 pt-24 pb-16 overflow-hidden"
     >
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-25 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent/30 via-background to-background" />
-      <div ref={content} className="w-full max-w-6xl mx-auto z-10 flex flex-col">
+      <div
+        ref={content}
+        className="w-full max-w-6xl mx-auto z-10 flex flex-col"
+      >
         <motion.div
           className="mb-8 md:mb-10"
           initial={{ opacity: 0, y: 12 }}
@@ -66,9 +70,23 @@ export default function Hero() {
           <p className="font-mono text-sm tracking-widest uppercase text-accent mb-2">
             {hero.location}
           </p>
-          <p className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
-            {hero.name}
-          </p>
+          <div className="flex items-center justify-items-center gap-2">
+            <p className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+              {hero.name}
+            </p>
+
+            <div
+              className="pointer-events-none block sm:hidden size-8"
+              aria-hidden="true"
+            >
+              <DotLottieReact
+                src="/icons/HappyDog.lottie"
+                loop
+                autoplay
+                className="size-full"
+              />
+            </div>
+          </div>
           <p className="text-lg md:text-xl text-muted-foreground mt-1">
             {hero.role}
           </p>

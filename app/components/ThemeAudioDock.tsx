@@ -13,6 +13,13 @@ export default function ThemeAudioDock() {
   const { isMusicInitialized, isSoundEnabled, toggleSound } = useMusic();
 
   useEffect(() => {
+    try {
+      const storedTheme = localStorage.getItem("ui-theme");
+      const theme: Theme = storedTheme === "light" ? "light" : "dark";
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(theme);
+    } catch {}
+
     sounds.current = {
       light: new Howl({ src: ["/audio/light-theme-sound.mp3"] }),
       dark: new Howl({ src: ["/audio/dark-theme-sound.mp3"] }),

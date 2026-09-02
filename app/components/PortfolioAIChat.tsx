@@ -1,9 +1,9 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
-import { CornerDownLeft, Sparkles, X } from "lucide-react";
+import { ArrowUpRight, CornerDownLeft, Sparkles, X } from "lucide-react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { askPortfolioAI } from "../api/portfolio-chat";
+import { askPortfolioAI, PortfolioChatError } from "../api/portfolio-chat";
 import PortfolioContactForm from "./PortfolioContactForm";
 
 type ChatMessage = {
@@ -22,6 +22,7 @@ export default function PortfolioAIChat() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [dailyLimitReached, setDailyLimitReached] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [contactDraft, setContactDraft] = useState(DEFAULT_CONTACT_DRAFT);
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -56,6 +57,17 @@ export default function PortfolioAIChat() {
   }, [open, contactOpen]);
 
   useEffect(() => {
+    const handleOpenContact = () => {
+      setContactDraft(DEFAULT_CONTACT_DRAFT);
+      setContactOpen(true);
+      setOpen(true);
+    };
+    window.addEventListener("portfolio-chat:open-contact", handleOpenContact);
+    return () =>
+      window.removeEventListener("portfolio-chat:open-contact", handleOpenContact);
+  }, []);
+
+  useEffect(() => {
     scroller.current?.scrollTo({
       top: scroller.current.scrollHeight,
       behavior: "smooth",
@@ -72,6 +84,7 @@ export default function PortfolioAIChat() {
 
     const assistantId = makeId();
     setInput("");
+    setDailyLimitReached(false);
     setLoading(true);
     setMessages((current) => [
       ...current,
@@ -90,10 +103,14 @@ export default function PortfolioAIChat() {
     try {
       await askPortfolioAI(prompt, updateAssistant);
     } catch (error) {
+      const limitReached = error instanceof PortfolioChatError && error.status === 429;
+      setDailyLimitReached(limitReached);
       updateAssistant(
-        error instanceof Error
-          ? error.message
-          : "AI temporarily unavailable. Please try again.",
+        limitReached
+          ? "Daily chat limit reached. Please try again tomorrow."
+          : error instanceof Error
+            ? error.message
+            : "AI temporarily unavailable. Please try again.",
       );
     } finally {
       setLoading(false);
@@ -199,6 +216,16 @@ export default function PortfolioAIChat() {
                     </div>
                   </article>
                 ))}
+              {(messages.length === 1 || dailyLimitReached) && !loading && (
+                <button
+                  type="button"
+                  onClick={() => openContact("I want to contact Binh")}
+                  className="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-accent/40 px-3 py-1.5 text-xs font-semibold text-accent transition-colors hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:hidden"
+                >
+                  I want to contact Binh
+                  <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                </button>
+              )}
               {loading && (
                 <div className="flex justify-start">
                   <div className="inline-flex items-center px-4 py-1 text-sm text-muted-foreground">
@@ -231,13 +258,14 @@ export default function PortfolioAIChat() {
                   ref={inputRef}
                   value={input}
                   onChange={(event) => setInput(event.target.value)}
-                  placeholder="Ask about skills, stack, fit…"
-                  className="min-h-12 min-w-0 flex-1 rounded-full border border-border/70 bg-background/80 px-4 text-[16px] text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-accent sm:text-sm"
+                  placeholder={dailyLimitReached ? "Daily limit reached" : "Ask about skills, stack, fit…"}
+                  disabled={dailyLimitReached}
+                  className="min-h-12 min-w-0 flex-1 rounded-full border border-border/70 bg-background/80 px-4 text-[16px] text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-accent disabled:cursor-not-allowed disabled:opacity-60 sm:text-sm"
                   aria-label="Ask AI about Binh"
                 />
                 <button
                   type="submit"
-                  disabled={!canSend}
+                  disabled={!canSend || dailyLimitReached}
                   className="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:scale-100"
                   aria-label="Send question"
                 >

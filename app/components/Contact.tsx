@@ -1,5 +1,6 @@
 "use client";
 
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { ArrowUpRight, Globe } from "lucide-react";
 import { contact } from "../lib/content";
 
@@ -35,6 +36,17 @@ export default function Contact() {
             className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-accent/15 blur-3xl"
             aria-hidden="true"
           />
+          <div
+            className="pointer-events-none absolute bottom-5 right-5 hidden size-13 sm:block md:size-18"
+            aria-hidden="true"
+          >
+            <DotLottieReact
+              src="/icons/HappyDog.lottie"
+              loop
+              autoplay
+              className="size-full"
+            />
+          </div>
           <div className="relative z-10">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-4">
               {contact.eyebrow}
@@ -51,39 +63,39 @@ export default function Contact() {
                 aria-hidden="true"
               />
             </a>
-            <p className="mt-6 md:mt-8">
-              <div className="flex">
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="font-mono text-sm md:text-base text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
-                >
-                  Contact via email {contact.email}
-                </a>
-              </div>
-            </p>
-            <div className="mt-10 md:mt-12 pt-8 border-t border-border/40 flex flex-col sm:flex-row flex-wrap gap-4">
-              {contact.socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.97] inline-flex items-center gap-2 px-6 py-3 min-h-11 border border-border bg-background/60 rounded-full text-sm font-semibold uppercase tracking-wide hover:border-accent hover:text-accent transition-colors"
-                >
-                  <svg
-                    width="15"
-                    height="15"
-                    viewBox="0 0 15 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="size-4"
-                    aria-hidden="true"
+            <div className="mt-6 md:mt-8 flex">
+              <a
+                href={`mailto:${contact.email}`}
+                className="font-mono text-sm md:text-base text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+              >
+                Contact via email {contact.email}
+              </a>
+            </div>
+            <div className="mt-10 flex flex-col flex-wrap gap-4 border-t border-border/40 pt-8 md:mt-12 sm:flex-row">
+              <div className="flex min-w-0 flex-1 flex-col flex-wrap gap-4 sm:flex-row">
+                {contact.socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.97] inline-flex items-center gap-2 px-6 py-3 min-h-11 border border-border bg-background/60 rounded-full text-sm font-semibold uppercase tracking-wide hover:border-accent hover:text-accent transition-colors"
                   >
-                    {ICONS[s.icon]}
-                  </svg>
-                  {s.label}
-                </a>
-              ))}
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 15 15"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="size-4"
+                      aria-hidden="true"
+                    >
+                      {ICONS[s.icon]}
+                    </svg>
+                    {s.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

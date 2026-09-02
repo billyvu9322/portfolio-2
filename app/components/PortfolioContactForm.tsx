@@ -240,25 +240,27 @@ export default function PortfolioContactForm({
             className="w-full resize-y rounded-xl border border-border/70 bg-background/80 px-3 py-3 text-[16px] leading-relaxed text-foreground outline-none focus:border-accent sm:text-sm"
           />
         </div>
-        <label
-          htmlFor="contact-website"
-          className="absolute -left-[10000px] h-px w-px overflow-hidden"
-        >
-          Website
-        </label>
-        <input
-          id="contact-website"
-          tabIndex={-1}
-          autoComplete="off"
-          value={website}
-          onChange={(event) => setWebsite(event.target.value)}
-          aria-hidden="true"
-        />
-        <div
-          ref={widgetContainer}
-          className="min-h-[65px]"
-          aria-label="Contact verification"
-        />
+        <div className="absolute -left-[10000px] h-px w-px overflow-hidden">
+          <label
+            htmlFor="contact-website"
+            className="absolute -left-[10000px] h-px w-px overflow-hidden"
+          >
+            Website
+          </label>
+          <input
+            id="contact-website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(event) => setWebsite(event.target.value)}
+            aria-hidden="true"
+          />
+          <div
+            ref={widgetContainer}
+            className="min-h-[65px]"
+            aria-label="Contact verification"
+          />
+        </div>
         {error && (
           <p
             className="rounded-xl border border-destructive/30 bg-destructive/8 px-3 py-2 text-sm text-destructive"

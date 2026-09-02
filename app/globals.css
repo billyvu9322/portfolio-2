@@ -55,6 +55,7 @@
   --sidebar-ring: #a1a1a1;
 }
 
+:root:not(.light),
 .dark {
   --background: #0a0a0a;
   --foreground: #fafafa;

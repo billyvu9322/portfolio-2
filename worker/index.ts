@@ -2,6 +2,9 @@ import { getRelevantContext, type Profile } from "./context";
 import { checkInputGuardrail, checkOutputGuardrail, isUnsafeOutput, refusal } from "./guardrails";
 import { ContactValidationError, parseContactRequest, type ContactRequest } from "./contact-validation";
 import { EmailDeliveryError, sendContactEmail } from "./email";
+import { ChatQuota, type ChatQuotaNamespace } from "./chat-quota";
+
+export { ChatQuota };
 
 type RateLimiter = {
   limit(options: { key: string }): Promise<{ success: boolean }>;
@@ -19,6 +22,7 @@ type Env = {
   TURNSTILE_SECRET_KEY?: string;
   TURNSTILE_SITE_KEY?: string;
   RATE_LIMITER?: RateLimiter;
+  CHAT_QUOTA: ChatQuotaNamespace;
 };
 
 type ContactTurnstileResponse = {
@@ -30,6 +34,8 @@ type ContactBody = ContactRequest;
 type ChatRequest = {
   message?: unknown;
 };
+
+import type { ChatQuotaResult } from "./chat-quota";
 
 type ProviderStreamChunk = {
   choices?: Array<{
@@ -102,6 +108,28 @@ function hasAllowedOrigin(request: Request, env: Env) {
 function isRateLimitError(status: number, message: string) {
   const normalizedMessage = message.toLowerCase();
   return status === 429 || normalizedMessage.includes("too many requests") || normalizedMessage.includes("rate limit") || normalizedMessage.includes("quota");
+}
+
+async function hashVisitorIp(ip: string) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(ip));
+  return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function rateLimitHeaders(quota: ChatQuotaResult) {
+  return {
+    "X-RateLimit-Limit": String(quota.limit),
+    "X-RateLimit-Remaining": String(quota.remaining),
+    "X-RateLimit-Reset": String(quota.resetAt),
+  };
+}
+
+async function reserveChatQuota(request: Request, env: Env) {
+  if (!env.CHAT_QUOTA) throw new Error("CHAT_QUOTA is not configured");
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+  const id = env.CHAT_QUOTA.idFromName(`chat:${await hashVisitorIp(ip)}`);
+  const response = await env.CHAT_QUOTA.get(id).fetch("https://chat-quota/reserve");
+  if (!response.ok) throw new Error("Chat quota unavailable");
+  return (await response.json()) as ChatQuotaResult;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -490,7 +518,27 @@ async function handleChat(request: Request, env: Env, corsHeaders: Record<string
 
   const guardrail = checkInputGuardrail(message);
   if (!guardrail.allowed) {
-    return json({ error: guardrail.message, success: false }, 400);
+    return json({ error: guardrail.message, success: false }, 400, corsHeaders);
+  }
+
+  let quota: ChatQuotaResult | null;
+  try {
+    quota = await reserveChatQuota(request, env);
+  } catch (error) {
+    console.error("Chat quota unavailable", error instanceof Error ? error.name : "unknown_error");
+    return json({ error: "Chat temporarily unavailable", success: false }, 503, corsHeaders);
+  }
+  const quotaHeaders = quota ? rateLimitHeaders(quota) : {};
+  if (quota && !quota.allowed) {
+    return json(
+      {
+        code: "DAILY_CHAT_LIMIT",
+        error: "Daily chat limit reached. Please try again tomorrow.",
+        success: false,
+      },
+      429,
+      { ...corsHeaders, ...quotaHeaders, "Retry-After": String(Math.max(0, quota.resetAt - Math.floor(Date.now() / 1000))) },
+    );
   }
 
   let context: string;
@@ -499,7 +547,7 @@ async function handleChat(request: Request, env: Env, corsHeaders: Record<string
     context = getRelevantContext(message, profile, guardrail.language);
   } catch (error) {
     console.error("Portfolio profile unavailable", error instanceof Error ? error.name : "unknown_error");
-    return json({ error: "Portfolio context temporarily unavailable", success: false }, 503);
+    return json({ error: "Portfolio context temporarily unavailable", success: false }, 503, { ...corsHeaders, ...quotaHeaders });
   }
 
   const baseUrl = (env.LLM_BASE_URL || DEFAULT_BASE_URL).replace(/\/$/, "");
@@ -510,14 +558,15 @@ async function handleChat(request: Request, env: Env, corsHeaders: Record<string
     if (!providerResponse.ok) {
       const providerMessage = await readLimitedBody(providerResponse, MAX_PROVIDER_ERROR_SIZE).catch(() => "");
       if (isRateLimitError(providerResponse.status, providerMessage)) {
-        return json({ error: "Rate limit reached. Please try again in a few minutes.", success: false }, 429);
+        return json({ error: "Rate limit reached. Please try again in a few minutes.", success: false }, 429, { ...corsHeaders, ...quotaHeaders });
       }
-      return json({ error: "AI temporarily unavailable", success: false }, 502);
+      return json({ error: "AI temporarily unavailable", success: false }, 502, { ...corsHeaders, ...quotaHeaders });
     }
-    return await streamProviderResponse(providerResponse, corsHeaders, guardrail.language);
+    const streamResponse = await streamProviderResponse(providerResponse, { ...corsHeaders, ...quotaHeaders }, guardrail.language);
+    return streamResponse;
   } catch (error) {
     console.error("Chat provider request failed", error instanceof Error ? error.name : "unknown_error");
-    return json({ error: "AI temporarily unavailable", success: false }, 502);
+    return json({ error: "AI temporarily unavailable", success: false }, 502, { ...corsHeaders, ...quotaHeaders });
   }
 }
 

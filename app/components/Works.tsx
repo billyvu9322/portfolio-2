@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import { ArrowUpRight, Rows3, LayoutGrid } from "lucide-react";
 import { gsap } from "gsap";
@@ -13,6 +13,11 @@ type View = "list" | "gallery";
 
 export default function Works() {
   const root = useRef<HTMLElement>(null);
+
+  const openContactForm = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    window.dispatchEvent(new Event("portfolio-chat:open-contact"));
+  };
   const [view, setView] = useState<View>("list");
   const [canGallery, setCanGallery] = useState(true);
 
@@ -360,6 +365,7 @@ export default function Works() {
         <div className="mt-20 text-center">
           <a
             href={works.cta.href}
+            onClick={openContactForm}
             className="ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.97] inline-flex items-center gap-3 px-10 py-4 min-h-11 border border-border rounded-md font-bold text-sm uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
           >
             {works.cta.label}

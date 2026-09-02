@@ -9,5 +9,5 @@
     "allowSyntheticDefaultImports": true,
     "lib": ["ES2022", "WebWorker"]
   },
-  "include": ["./*.ts"]
+  "include": ["./*.ts", "./cloudflare.d.ts"]
 }

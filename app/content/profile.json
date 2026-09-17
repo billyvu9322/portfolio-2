@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Tat Binh Vu | Full-Stack Software Engineer",
-    "description": "Tat Binh Vu is a Full-Stack Software Engineer with 4+ years of experience building scalable web applications, enterprise integrations, and AI-powered automation systems.",
+    "description": "Tat Binh Vu is a Full-Stack Software Engineer with 5+ years of experience building scalable web applications, enterprise integrations, and AI-powered automation systems.",
     "url": "https://binhvu.nimo.io.vn",
     "siteName": "Tat Binh Vu | Portfolio",
     "author": "Tat Binh Vu",
@@ -12,22 +12,21 @@
       "Full Stack Engineer",
       "Product Development",
       "CI/CD",
-      "Microsoft MVP",
       ".NET",
       ".NET 8",
+      "C#",
       "Node.js",
-      "Fastify",
       "React",
-      "Next.js",
-      "AI Automation",
-      "Agentic AI",
-      "OpenAI",
       "TypeScript",
+      "Microsoft Graph",
+      "Exchange Online",
+      "RabbitMQ",
+      "Azure Event Hubs",
+      "Docker",
       "Shopify App Development",
       "PostgreSQL",
       "SQL Server",
       "Wix App Development",
-      "Shopify Plus",
       "Hanoi"
     ],
     "ogImage": "/images/print.webp"
@@ -59,6 +58,15 @@
   "hero": {
     "location": "Hanoi Capital Region, Vietnam",
     "name": "Tat Binh Vu",
+    "nameVietnamese": "Tất Bình Vũ",
+    "aliases": [
+      "Bình",
+      "binh",
+      "bình",
+      "Binh",
+      "Tất Bình Vũ",
+      "Tat Binh Vu"
+    ],
     "role": "Full-Stack Software Engineer",
     "headline": [
       {
@@ -74,7 +82,7 @@
         "type": "stroke-accent"
       }
     ],
-    "description": "I build and scale web products, combining full-stack engineering, scalable architectures, enterprise integrations, and AI-powered automation to turn complex requirements into reliable solutions.",
+    "description": "Full-Stack Software Engineer with 5+ years of experience building scalable, high-performance web applications and enterprise software with C#/.NET, Node.js, React, Next.js, cloud infrastructure, Docker, CI/CD, and AI-powered automation.",
     "primaryCta": {
       "label": "View Work",
       "href": "#work"
@@ -99,79 +107,240 @@
 
     "projects": [
       {
-        "title": "Request a Quote",
+        "title": "Workplace Sensor",
+        "year": "2021–2025",
+        "tagline": "Connected workplace monitoring platform",
+        "description": "Workplace sensor solution that helps organizations understand office usage and environmental conditions through connected sensor data and real-time insights.",
+        "tags": [
+          "Multi-Tenant",
+          ".NET 8",
+          "React",
+          "PostgreSQL",
+          "RabbitMQ",
+          "Microsoft Graph",
+          "Exchange Online",
+          "Sensors"
+        ],
+        "caseStudy": "/work/workplace-sensor",
+        "liveSite": "https://www.add-on.com/workplace-sensor-solution/",
+        "image": "/images/officeplace-sensors.webp",
+        "imageAlt": "Workplace Sensor Solution office monitoring dashboard",
+        "detail": {
+          "slug": "workplace-sensor",
+          "role": "Full-Stack Web Developer · Add-on Development",
+          "overview": "A multi-tenant workplace sensor platform that helps organizations understand office usage and environmental conditions through connected sensor data and real-time insights.",
+          "contributions": [
+            "Built secure authentication and authorization with JWT.",
+            "Built Microsoft Graph and Exchange Online integrations for calendar, user, and mailbox synchronization.",
+            "Developed React/TypeScript workflows and public REST APIs for Microsoft 365 solutions.",
+            "Implemented event-driven processing with RabbitMQ and Azure Event Hubs.",
+            "Built CI/CD pipelines and improved performance, observability, and production reliability."
+          ],
+          "responsibilities": [
+            "Developed multi-tenant workplace monitoring features.",
+            "Integrated workplace data with Microsoft 365 services.",
+            "Collaborated within a six-member team to deliver reliable platform capabilities."
+          ],
+          "domain": ["Workplace management", "IoT sensor monitoring", "Microsoft 365 integration"],
+          "outcome": "Organizations gain clearer visibility into workplace conditions and how office spaces are being used.",
+          "technologies": [".NET 8", "React", "TypeScript", "PostgreSQL", "RabbitMQ", "Azure Event Hubs", "Microsoft Graph", "Exchange Online", "JWT", "CI/CD"]
+        }
+      },
+      {
+        "title": "Group Calendar",
         "year": "2026",
-        "tagline": "Shopify app for price visibility control",
-        "description": "Built a Shopify app with React, .NET 8, and PostgreSQL to help merchants control product price visibility through configurable pricing rules.",
+        "tagline": "Shared calendar management for teams",
+        "description": "Shared calendar management platform that helps teams coordinate schedules, manage group events, and stay aligned through centralized calendar views and Microsoft 365 integration.",
         "tags": [
           "React",
-          ".NET 8",
+          "TypeScript",
+          "Fluent UI",
+          "TanStack",
+          "Zustand",
+          "Microsoft Graph"
+        ],
+        "caseStudy": "/work/group-calendar",
+        "liveSite": "https://www.add-on.com/calendar-management-software/",
+        "image": "/images/group-calendar.webp",
+        "imageAlt": "Group Calendar shared scheduling platform preview",
+        "detail": {
+          "slug": "group-calendar",
+          "role": "Full-stack Developer · Add-on Development",
+          "overview": "A shared calendar management platform that helps teams coordinate schedules, manage group events, and stay aligned through centralized calendar views and Microsoft 365 integration.",
+          "contributions": [
+            "Developed calendar and meeting management features using React and TypeScript.",
+            "Integrated Microsoft Graph APIs for calendar and Microsoft 365 workflows.",
+            "Designed state management and data-fetching workflows using TanStack and Zustand.",
+            "Optimized frontend performance and responsiveness for complex calendar interactions.",
+            "Built and deployed the application across Microsoft Teams and Outlook environments."
+          ],
+          "responsibilities": [
+            "Developed user-facing features for shared calendars and event management.",
+            "Integrated Microsoft Graph data into calendar workflows.",
+            "Collaborated with the product team to improve usability and consistency."
+          ],
+          "domain": ["Calendar management", "Team collaboration", "Microsoft 365 integration"],
+          "outcome": "Teams can manage shared schedules and coordinate events from one clear, centralized calendar experience.",
+          "technologies": ["React", "TypeScript", "TanStack", "Zustand", "Fluent UI", "Microsoft Graph"]
+        }
+      },
+      {
+        "title": "Request a Quote",
+        "year": "2025",
+        "tagline": "Shopify app for price visibility control",
+        "description": "Developed a Shopify app enabling B2B stores to hide prices, manage quote requests, and automate order conversion with React, .NET, PostgreSQL, and RabbitMQ.",
+        "tags": [
+          "React",
+          ".NET",
           "PostgreSQL",
+          "RabbitMQ",
           "Shopify"
         ],
         "caseStudy": "/work/madgic-hide-price",
         "liveSite": "https://apps.shopify.com/madgic-hide-price?surface_intra_position=2&surface_type=partners&surface_version=simplified",
         "image": "/images/quote.webp",
-        "imageAlt": "Madgic Hide Price Shopify app preview"
+        "imageAlt": "Madgic Hide Price Shopify app preview",
+        "detail": {
+          "slug": "madgic-hide-price",
+          "role": "Full-Stack Engineer",
+          "overview": "A Shopify app that gives merchants flexible control over product price visibility across their storefront.",
+          "contributions": [
+            "Built .NET APIs and Shopify Theme Extensions.",
+            "Implemented price visibility and quote request workflows.",
+            "Developed storefront features with React and TypeScript."
+          ],
+          "responsibilities": [
+            "Translated merchant requirements into product functionality.",
+            "Developed and maintained price visibility workflows.",
+            "Collaborated with the team to improve reliability and usability."
+          ],
+          "domain": ["E-commerce", "Shopify app development", "Price management"],
+          "outcome": "Merchants can manage when and how product prices appear for different storefront scenarios.",
+          "technologies": ["React", ".NET", "PostgreSQL", "RabbitMQ", "Shopify"]
+        }
       },
-
       {
         "title": "Social Widgets",
-        "year": "2026",
-        "tagline": "TikTok and Instagram Feed app for Wix",
-        "description": "Built a Wix app with React, .NET 8, and SQL Server for displaying TikTok and Instagram content through merchant-configurable widgets.",
+        "year": "2023",
+        "tagline": "Orichi TikTok and Instagram Feeds app for Wix",
+        "description": "Developed a Wix app enabling e-commerce stores to embed shoppable Instagram and TikTok feeds with product tagging and direct product discovery using .NET, SQL Server, RabbitMQ, React, and TypeScript.",
         "tags": [
-          "React",
-          ".NET 8",
+          ".NET",
           "SQL Server",
+          "RabbitMQ",
+          "React",
+          "TypeScript",
           "Wix"
         ],
         "caseStudy": "/work/orichi-social-widgets",
         "liveSite": "https://www.wix.com/app-market/orichi-social-widgets?appIndex=16&referral=search-result&referralSectionName=Tiktok",
         "image": "/images/tiktok.webp",
-        "imageAlt": "Social Widgets TikTok and Instagram Feed Wix app preview"
+        "imageAlt": "Social Widgets TikTok and Instagram Feed Wix app preview",
+        "detail": {
+          "slug": "orichi-social-widgets",
+          "role": "Full-Stack Engineer",
+          "overview": "A Wix app that helps merchants display TikTok and Instagram content through configurable storefront widgets.",
+          "contributions": [
+            "Built .NET APIs and Wix Site Extensions.",
+            "Integrated TikTok and Instagram APIs for social content.",
+            "Developed frontend features with React and TypeScript."
+          ],
+          "responsibilities": [
+            "Translated widget requirements into reusable product features.",
+            "Developed and maintained social feed display workflows.",
+            "Collaborated with the team to improve merchant experience."
+          ],
+          "domain": ["E-commerce", "Wix app development", "Social media integrations"],
+          "outcome": "Merchants can bring social content into their Wix storefront and customize how feeds appear to visitors.",
+          "technologies": [".NET", "SQL Server", "RabbitMQ", "React", "TypeScript", "Wix"]
+        }
+      }
+    ],
+    "archiveHeading": "Archive",
+    "archiveIntro": "More selected builds and technical work.",
+    "archive": [
+      {
+        "title": "Nimovex",
+        "year": "2026",
+        "tagline": "Focused Shopify ecommerce solutions",
+        "stack": "Next.js · Cloudflare Durable Object · Cloudflare Workers",
+        "caseStudy": "/work/nimovex",
+        "liveSite": "https://nimovex.info/",
+        "image": "/images/nimovex.webp",
+        "detail": {
+          "slug": "nimovex",
+          "role": "Founder & Full-Stack Engineer",
+          "overview": "A focused Shopify ecommerce studio building tools that improve product revenue and streamline store operations.",
+          "contributions": [
+            "Built Nimovex Bid & Auction to turn Shopify products into live auctions.",
+            "Implemented live bidding, countdowns, reserve-price status, bidder counts, and anti-sniping.",
+            "Integrated winning bids with native Shopify checkout through draft orders and inventory holds."
+          ],
+          "responsibilities": [
+            "Designed and developed a native Shopify theme app extension without requiring theme-code edits.",
+            "Built merchant workflows for guest bidding, second-chance offers, analytics, and CSV export.",
+            "Developed software solutions that help Shopify merchants improve product revenue and streamline store operations."
+          ],
+          "domain": ["Shopify apps", "Ecommerce", "Live auctions", "Revenue optimization"],
+          "outcome": "Merchants can turn products into live auctions, let demand set the price, and complete payment through their existing Shopify checkout with 0% commission.",
+          "technologies": ["Next.js", "Cloudflare Durable Object", "Cloudflare Workers"]
+        }
       },
-
+      {
+        "title": "Harness Academy",
+        "year": "2026",
+        "tagline": "Learning harness design and AI-powered workflows",
+        "stack": "React · Node.js (Fastify) · PostgreSQL · OpenAI",
+        "caseStudy": "/work/harness-academy",
+        "liveSite": "https://harness-academy.nimo.io.vn/",
+        "image": "/images/harness.webp",
+        "detail": {
+          "slug": "harness-academy",
+          "role": "Full-Stack Engineer",
+          "overview": "An AI-assisted learning platform for exploring harness design through structured lessons and practical workflows.",
+          "contributions": [
+            "Built interactive learning flows and supporting product features.",
+            "Connected learning content with AI-assisted workflows.",
+            "Shaped a focused experience for technical exploration."
+          ],
+          "responsibilities": [
+            "Designed and developed guided learning workflows.",
+            "Integrated AI-assisted features into the learning experience.",
+            "Collaborated on product structure and technical implementation."
+          ],
+          "domain": ["Technical education", "AI-assisted learning", "Harness design"],
+          "outcome": "Learners can move from harness concepts to practical understanding through guided, AI-supported study.",
+          "technologies": ["React", "Node.js (Fastify)", "PostgreSQL", "OpenAI"]
+        }
+      },
       {
         "title": "Hanguru",
         "year": "2026",
         "tagline": "Korean learning platform",
-        "description": "Built a Korean learning platform with React, Fastify, Node.js, and PostgreSQL, covering the web application, backend services, and structured learning content.",
-        "tags": [
-          "React",
-          "Fastify",
-          "Node.js",
-          "PostgreSQL"
-        ],
+        "stack": "React · Node.js (Fastify) · PostgreSQL",
         "caseStudy": "/work/hanguru",
         "liveSite": "https://hanguru.nimo.io.vn/",
         "image": "/images/hanguru.webp",
-        "imageAlt": "Hanguru Korean learning website preview"
-      },
-
-      {
-        "title": "Harness Academy",
-        "year": "2026",
-        "tagline": "AI-assisted learning platform",
-        "description": "Built an AI-assisted learning platform with React, TypeScript, Fastify, Node.js, PostgreSQL, and OpenAI for guided lessons, practice support, and structured learning workflows.",
-        "tags": [
-          "React",
-          "TypeScript",
-          "Fastify",
-          "Node.js",
-          "PostgreSQL",
-          "OpenAI"
-        ],
-        "caseStudy": "/work/harness-academy",
-        "liveSite": "https://harness-academy.nimo.io.vn/",
-        "image": "/images/harness.webp",
-        "imageAlt": "Harness Academy AI-assisted learning platform preview"
+        "detail": {
+          "slug": "hanguru",
+          "role": "Full-Stack Engineer",
+          "overview": "A Korean learning platform designed to help learners build language skills through structured practice and accessible study flows.",
+          "contributions": [
+            "Built learning flows for guided Korean language practice.",
+            "Created responsive product experiences across core study screens.",
+            "Supported a clear, approachable path for ongoing learning."
+          ],
+          "responsibilities": [
+            "Designed and developed structured language practice flows.",
+            "Built responsive interfaces for core learning screens.",
+            "Collaborated on product improvements focused on learner engagement."
+          ],
+          "domain": ["Education technology", "Language learning", "Interactive practice"],
+          "outcome": "Learners get a focused digital space for practicing Korean and building consistent study habits.",
+          "technologies": ["React", "Node.js (Fastify)", "PostgreSQL"]
+        }
       }
     ],
-
-    "archiveHeading": "Archive",
-    "archiveIntro": "More selected builds and technical work.",
-    "archive": [],
 
     "cta": {
       "label": "Start a conversation",
@@ -188,11 +357,11 @@
     "heading": "About",
     "subheading": "Software Engineer & Builder",
 
-    "bio": "Full-Stack Software Engineer with 4+ years of experience building scalable web applications, enterprise integrations, and AI-powered automation systems.",
+    "bio": "Full-Stack Software Engineer with 5+ years of experience building scalable web applications and enterprise solutions with C#/.NET, Node.js, React, cloud infrastructure, Docker, CI/CD, and AI-powered automation.",
 
     "proofLabel": "Proof",
 
-    "proof": "Microsoft MVP · Bachelor of Information Technology, University of Transport and Communications",
+    "proof": "Bachelor of Information Technology, University of Transport and Communications",
 
     "skills": [
       {
@@ -225,26 +394,22 @@
         "description": "Backend, frontend, and application development across modern web technologies.",
         "items": [
           "C# / .NET",
-          "Node.js (Fastify)",
-          "TypeScript",
-          "Next.js",
-          "React",
-          "Python"
+          "Node.js / Fastify",
+          "TypeScript / JavaScript",
+          "ReactJS / Next.js",
+          "HTML5 / CSS3"
         ]
       },
 
       {
-        "title": "Cloud & Data",
+        "title": "Cloud & Data Architecture",
         "description": "Cloud platforms, data stores, containers, and delivery systems for scalable applications.",
         "items": [
-          "Azure",
-          "PostgreSQL",
-          "SQL Server",
-          "MongoDB",
-          "Redis",
-          "Microservices",
-          "Docker",
-          "CI/CD"
+          "Microsoft Azure",
+          "PostgreSQL / SQL Server / Redis",
+          "Docker / CI/CD Pipelines / Nginx",
+          "Microservices / Event-Driven Architecture",
+          "RabbitMQ / Azure Event Hubs"
         ]
       },
 
@@ -252,13 +417,14 @@
         "title": "AI & Integrations",
         "description": "Practical AI workflows, automation, and platform integrations for modern products.",
         "items": [
-          "Shopify Apps",
-          "Wix Apps",
-          "OpenAI",
-          "Agentic",
-          "MCP Servers",
-          "AI Workflows",
-          "Harness Design"
+          "RESTful API Design / GraphQL",
+          "Microsoft Graph API / Exchange Online",
+          "Shopify App Development",
+          "Wix App Development",
+          "JWT / OAuth2",
+          "AI Driven Workflows / Agentic Automation",
+          "Harness Design",
+          "OpenAI SDK / CrewAI"
         ]
       }
     ],
@@ -300,9 +466,9 @@
         "icon": "linkedin"
       },
       {
-        "label": "Portfolio",
-        "href": "https://binhvu.nimo.io.vn",
-        "icon": "globe"
+        "label": "Download CV",
+        "href": "/cv/CV_TatBinhVu.pdf",
+        "icon": "download"
       }
     ],
 

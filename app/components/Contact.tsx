@@ -1,7 +1,7 @@
 "use client";
 
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { ArrowUpRight, Globe } from "lucide-react";
+import { ArrowDownToLine, ArrowUpRight, Globe } from "lucide-react";
 import { contact } from "../lib/content";
 
 const ICONS: Record<string, React.ReactNode> = {
@@ -22,6 +22,7 @@ const ICONS: Record<string, React.ReactNode> = {
     />
   ),
   globe: <Globe size="15" />,
+  download: <ArrowDownToLine size="15" />,
 };
 
 export default function Contact() {

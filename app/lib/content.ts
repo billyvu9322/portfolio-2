@@ -9,6 +9,17 @@ export type HeadlineWord = {
 
 export type CtaLink = { label: string; href: string };
 
+export type ProjectDetail = {
+  slug: string;
+  role: string;
+  overview: string;
+  contributions: string[];
+  responsibilities: string[];
+  domain: string[];
+  outcome: string;
+  technologies: string[];
+};
+
 export type Project = {
   title: string;
   year: string;
@@ -19,6 +30,7 @@ export type Project = {
   liveSite: string;
   image: string;
   imageAlt: string;
+  detail: ProjectDetail;
 };
 
 export type ArchiveItem = {
@@ -29,6 +41,8 @@ export type ArchiveItem = {
   caseStudy: string;
   liveSite: string;
   image: string;
+  imageAlt?: string;
+  detail: ProjectDetail;
 };
 
 export type Skill = { title: string; description: string };
@@ -122,3 +136,4 @@ export const profile = data as Profile;
 export const { nav, hero, works, about, skills, contact, meta } = profile;
 export const projects = works.projects;
 export const archive = works.archive;
+export const allProjects = [...projects, ...archive];

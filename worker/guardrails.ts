@@ -99,6 +99,12 @@ function normalize(value: string) {
   return value.toLowerCase().normalize("NFC").trim();
 }
 
+function normalizeForMatch(value: string) {
+  return normalize(value)
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "");
+}
+
 export function detectLanguage(message: string): ResponseLanguage {
   const normalized = normalize(message);
   const vietnameseDiacritics = /[ăâđêôơưáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ]/i;
@@ -111,7 +117,8 @@ export function detectLanguage(message: string): ResponseLanguage {
 }
 
 function hasPortfolioTerm(message: string) {
-  return PORTFOLIO_TERMS.some((term) => message.includes(term));
+  const normalized = normalizeForMatch(message);
+  return PORTFOLIO_TERMS.some((term) => normalized.includes(normalizeForMatch(term)));
 }
 
 function hasInjection(message: string) {
@@ -123,8 +130,9 @@ function isGenericRequest(message: string) {
 }
 
 function hasPortfolioQualifier(message: string) {
-  return /\b(?:binh|candidate|portfolio|profile|experience|skills?|projects?|role|fit)\b/i.test(message)
-    || /(?:của binh|cua binh|hồ sơ|ho so|kinh nghiệm|kinh nghiem|kỹ năng|ky nang|dự án|du an|vai trò|vai tro)/i.test(message);
+  const normalized = normalizeForMatch(message);
+  return /\b(?:binh|candidate|portfolio|profile|experience|skills?|projects?|role|fit)\b/i.test(normalized)
+    || /(?:cua binh|ho so|kinh nghiem|ky nang|du an|vai tro)/i.test(normalized);
 }
 
 export function refusal(language: ResponseLanguage) {

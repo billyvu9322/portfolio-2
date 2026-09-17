@@ -34,7 +34,7 @@ Không đưa `LLM_API_KEY` vào frontend hoặc biến `NEXT_PUBLIC_*`.
 - `worker/contact-validation.ts`: contact field limits, validation, and honeypot handling.
 - `worker/email.ts`: Resend REST delivery with fixed recipient/sender.
 - `app/api/portfolio-contact.ts`: typed frontend adapter for contact requests.
-- `app/components/PortfolioContactForm.tsx`: editable draft, Turnstile, and explicit send UX.
+- `app/components/PortfolioContactForm.tsx`: editable draft and explicit send UX.
 - `scripts/sync-profile.mjs`: copy `app/content/profile.json` thành public `public/profile.json` trước dev/build.
 - `worker/tsconfig.json`: Worker TypeScript config.
 - `wrangler.toml`: Worker name, entrypoint, compatibility date, public variables.
@@ -92,7 +92,6 @@ Tạo `.env.local` cho frontend:
 
 ```dotenv
 NEXT_PUBLIC_PORTFOLIO_CHAT_API_URL="http://localhost:8787"
-NEXT_PUBLIC_TURNSTILE_SITE_KEY="your-turnstile-site-key"
 ```
 
 Restart Next.js sau khi đổi `.env.local`. Frontend tự thêm `/api/chat`. Có thể truyền URL đã bao gồm `/api/chat`.
@@ -106,14 +105,12 @@ Required Worker vars in `wrangler.toml`:
 ```toml
 EMAIL_FROM = "Mochi <mochi@your-verified-domain.com>"
 OWNER_EMAIL = "your-email@example.com"
-TURNSTILE_SITE_KEY = "your-turnstile-site-key"
 ```
 
-Required secrets, stored outside Git:
+Required secret, stored outside Git:
 
 ```bash
 npx wrangler secret put RESEND_API_KEY
-npx wrangler secret put TURNSTILE_SECRET_KEY
 ```
 
 Resend setup:
@@ -123,12 +120,7 @@ Resend setup:
 3. Set `OWNER_EMAIL` to fixed portfolio owner address.
 4. Set `RESEND_API_KEY` as Worker secret.
 
-Turnstile setup:
-
-1. Create site for `binhvu.nimo.io.vn` and local development hostname.
-2. Set public site key in frontend build env as `NEXT_PUBLIC_TURNSTILE_SITE_KEY`.
-3. Set secret key with `npx wrangler secret put TURNSTILE_SECRET_KEY`.
-4. Worker verifies token server-side before calling Resend.
+Contact abuse controls use honeypot validation, bounded fields, and Cloudflare rate limiting.
 
 Contact request:
 
@@ -137,7 +129,6 @@ Contact request:
   "name": "John Doe",
   "email": "john@example.com",
   "message": "I would like to discuss a full-stack role.",
-  "turnstileToken": "token-from-widget",
   "website": ""
 }
 ```
@@ -152,7 +143,7 @@ Contact responses:
 { "success": false, "error": "Unable to send message right now. Please try again." }
 ```
 
-Worker sends plain text through `https://api.resend.com/emails` with fixed `OWNER_EMAIL`, fixed `EMAIL_FROM`, and visitor email as `Reply-To`. No chat transcript sent by default. Name, email, message, token, and honeypot fields are bounded and validated. Configure Cloudflare Rate Limiting for `POST /api/contact`; Worker returns HTTP `429` when binding/rule rejects traffic.
+Worker sends plain text through `https://api.resend.com/emails` with fixed `OWNER_EMAIL`, fixed `EMAIL_FROM`, and visitor email as `Reply-To`. No chat transcript sent by default. Name, email, message, and honeypot fields are bounded and validated. Configure Cloudflare Rate Limiting for `POST /api/contact`; Worker returns HTTP `429` when binding/rule rejects traffic.
 
 ## 3. Verify local Worker
 
@@ -165,10 +156,10 @@ curl -i -X OPTIONS "http://localhost:8787/api/contact" -H "Origin: http://localh
 Contact validation request:
 
 ```bash
-curl -i "http://localhost:8787/api/contact" -X POST -H "Origin: http://localhost:8900" -H "Content-Type: application/json" --data "{\"name\":\"John Doe\",\"email\":\"john@example.com\",\"message\":\"Hello Binh\",\"turnstileToken\":\"test-token\",\"website\":\"\"}"
+curl -i "http://localhost:8787/api/contact" -X POST -H "Origin: http://localhost:8900" -H "Content-Type: application/json" --data "{\"name\":\"John Doe\",\"email\":\"john@example.com\",\"message\":\"Hello Binh\",\"website\":\"\"}"
 ```
 
-Expected local result without real Turnstile token: HTTP `400` with `Contact verification failed. Please try again.`. Do not use production Resend credentials for automated tests.
+Expected result depends on Resend configuration. Do not use production Resend credentials for automated tests.
 
 ## 4. Verify local Worker
 
@@ -233,7 +224,6 @@ Không ghi API key trong `wrangler.toml`, source code, Git, hoặc frontend env.
 ```bash
 npx wrangler secret put LLM_API_KEY
 npx wrangler secret put RESEND_API_KEY
-npx wrangler secret put TURNSTILE_SECRET_KEY
 ```
 
 Nhập từng secret khi terminal hỏi.
@@ -250,7 +240,6 @@ ALLOWED_ORIGIN = "https://binhvu.nimo.io.vn"
 PROFILE_URL = "https://binhvu.nimo.io.vn/profile.json"
 EMAIL_FROM = "Mochi <mochi@your-verified-domain.com>"
 OWNER_EMAIL = "your-email@example.com"
-TURNSTILE_SITE_KEY = "your-turnstile-site-key"
 ```
 
 Deploy Worker để áp dụng config:
@@ -364,7 +353,6 @@ Trong Cloudflare Pages project hoặc môi trường build frontend, set:
 
 ```dotenv
 NEXT_PUBLIC_PORTFOLIO_CHAT_API_URL="https://binhvu-portfolio-chat.<your-subdomain>.workers.dev"
-NEXT_PUBLIC_TURNSTILE_SITE_KEY="your-turnstile-site-key"
 ```
 
 Use same Worker URL for chat and contact API; client appends route suffixes.
@@ -373,7 +361,6 @@ Nếu dùng local `.env.production`:
 
 ```dotenv
 NEXT_PUBLIC_PORTFOLIO_CHAT_API_URL="https://binhvu-portfolio-chat.<your-subdomain>.workers.dev"
-NEXT_PUBLIC_TURNSTILE_SITE_KEY="your-turnstile-site-key"
 ```
 
 Rebuild static portfolio:
@@ -390,7 +377,6 @@ Không set các biến sau ở frontend:
 LLM_API_KEY=...
 NEXT_PUBLIC_LLM_API_KEY=...
 RESEND_API_KEY=...
-TURNSTILE_SECRET_KEY=...
 ```
 
 ## 10. Custom API domain
@@ -407,7 +393,6 @@ Frontend env:
 
 ```dotenv
 NEXT_PUBLIC_PORTFOLIO_CHAT_API_URL="https://api.binhvu.nimo.io.vn"
-NEXT_PUBLIC_TURNSTILE_SITE_KEY="your-turnstile-site-key"
 ```
 
 Worker vẫn cần:
@@ -445,8 +430,8 @@ Không set `ALLOWED_ORIGIN` thành API origin.
 - `GET /health`: health check, HTTP `200`, không gọi LLM.
 - `OPTIONS /api/chat`, `OPTIONS /api/contact`: CORS preflight, HTTP `204`.
 - `POST /api/chat`: nhận `{ "message": "..." }` và trả `text/event-stream` khi provider hỗ trợ streaming.
-- `POST /api/contact`: validates Turnstile and sends plain-text email through Resend to fixed `OWNER_EMAIL`; visitor email becomes `Reply-To`.
-- Contact validation rejects invalid fields, oversized content, honeypot values, missing Turnstile token, and rate-limit exhaustion.
+- `POST /api/contact`: validates contact fields and sends plain-text email through Resend to fixed `OWNER_EMAIL`; visitor email becomes `Reply-To`.
+- Contact validation rejects invalid fields, oversized content, honeypot values, and rate-limit exhaustion.
 - Input guardrail chặn câu hỏi ngoài portfolio và prompt-injection trước khi Worker tải profile hoặc gọi LLM.
 - Guardrail phát hiện ngôn ngữ câu hỏi; câu hỏi tiếng Việt nhận trả lời tiếng Việt, câu hỏi tiếng Anh nhận trả lời tiếng Anh.
 - Câu hỏi bị chặn trả HTTP `400` với refusal message cùng ngôn ngữ câu hỏi.
@@ -482,7 +467,7 @@ Worker không lưu chat history, cookie, database, credential, hoặc session.
 npx wrangler secret put LLM_API_KEY
 ```
 
-- Nếu public traffic tăng hoặc bị abuse, thêm Cloudflare Rate Limiting, WAF, hoặc Turnstile.
+- Nếu public traffic tăng hoặc bị abuse, tăng Cloudflare Rate Limiting hoặc thêm WAF.
 
 ## 12. Useful commands
 

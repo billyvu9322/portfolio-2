@@ -2,7 +2,6 @@ export const CONTACT_LIMITS = {
   name: 100,
   email: 254,
   message: 4000,
-  turnstileToken: 2048,
   website: 200,
 } as const;
 
@@ -10,7 +9,6 @@ export type ContactRequest = {
   name: string;
   email: string;
   message: string;
-  turnstileToken: string;
   website: string;
 };
 
@@ -57,7 +55,6 @@ export function parseContactRequest(value: unknown): ContactRequest {
   const name = safeHeaderValue(stringField(body.name, "name"));
   const email = normalizeEmail(stringField(body.email, "email"));
   const message = stringField(body.message, "message");
-  const turnstileToken = stringField(body.turnstileToken, "turnstileToken");
   const website = typeof body.website === "string" ? body.website.trim() : "";
 
   if (website.length > CONTACT_LIMITS.website) {
@@ -67,5 +64,5 @@ export function parseContactRequest(value: unknown): ContactRequest {
     throw new ContactValidationError("Invalid contact request.");
   }
 
-  return { name, email, message, turnstileToken, website };
+  return { name, email, message, website };
 }

@@ -19,14 +19,8 @@ type Env = {
   RESEND_API_KEY?: string;
   EMAIL_FROM?: string;
   OWNER_EMAIL?: string;
-  TURNSTILE_SECRET_KEY?: string;
-  TURNSTILE_SITE_KEY?: string;
   RATE_LIMITER?: RateLimiter;
   CHAT_QUOTA: ChatQuotaNamespace;
-};
-
-type ContactTurnstileResponse = {
-  success?: unknown;
 };
 
 type ContactBody = ContactRequest;
@@ -171,6 +165,10 @@ function parseProfile(value: unknown): Profile {
     meta: { url: requiredString(meta.url, "meta.url") },
     hero: {
       name: requiredString(hero.name, "hero.name"),
+      ...(typeof hero.nameVietnamese === "string" ? { nameVietnamese: hero.nameVietnamese } : {}),
+      ...(Array.isArray(hero.aliases) && hero.aliases.every((alias) => typeof alias === "string")
+        ? { aliases: hero.aliases as string[] }
+        : {}),
       role: requiredString(hero.role, "hero.role"),
       description: requiredString(hero.description, "hero.description"),
       location: requiredString(hero.location, "hero.location"),
@@ -419,30 +417,10 @@ async function streamProviderResponse(providerResponse: Response, corsHeaders: R
 }
 
 const MAX_CONTACT_BODY_LENGTH = 8_000;
-const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
-
-async function verifyTurnstile(request: Request, token: string, secret: string) {
-  const form = new URLSearchParams({ secret, response: token });
-  const remoteIp = request.headers.get("CF-Connecting-IP");
-  if (remoteIp) form.set("remoteip", remoteIp);
-
-  const response = await fetch(TURNSTILE_VERIFY_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: form,
-  }).catch(() => null);
-
-  if (!response?.ok) return false;
-  const result = (await response.json().catch(() => null)) as ContactTurnstileResponse | null;
-  return result?.success === true;
-}
 
 async function handleContact(request: Request, env: Env, corsHeaders: Record<string, string>) {
   if (!env.RESEND_API_KEY || !env.EMAIL_FROM || !env.OWNER_EMAIL) {
     return json({ error: "Contact service is not configured", success: false }, 503, corsHeaders);
-  }
-  if (!env.TURNSTILE_SECRET_KEY) {
-    return json({ error: "Contact verification is not configured", success: false }, 503, corsHeaders);
   }
 
   const contentLength = Number(request.headers.get("Content-Length"));
@@ -469,11 +447,6 @@ async function handleContact(request: Request, env: Env, corsHeaders: Record<str
       return json({ error: error.message, success: false }, 400, corsHeaders);
     }
     return json({ error: "Invalid contact request", success: false }, 400, corsHeaders);
-  }
-
-  const verified = await verifyTurnstile(request, contact.turnstileToken, env.TURNSTILE_SECRET_KEY);
-  if (!verified) {
-    return json({ error: "Contact verification failed. Please try again.", success: false }, 400, corsHeaders);
   }
 
   if (env.RATE_LIMITER) {

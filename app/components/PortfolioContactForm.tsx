@@ -1,35 +1,14 @@
 "use client";
 
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
 import { ArrowLeft, Check, SendHorizonal, X } from "lucide-react";
 import { sendPortfolioContact } from "../api/portfolio-contact";
-
-type TurnstileWidget = {
-  render: (
-    container: HTMLElement,
-    options: {
-      sitekey: string;
-      callback: (token: string) => void;
-      "expired-callback": () => void;
-      "error-callback": () => void;
-    },
-  ) => string;
-  reset: (widgetId?: string) => void;
-};
-
-declare global {
-  interface Window {
-    turnstile?: TurnstileWidget;
-  }
-}
 
 type PortfolioContactFormProps = {
   initialMessage: string;
   onClose: () => void;
 };
 
-const TURNSTILE_SCRIPT =
-  "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 const DEFAULT_MESSAGE =
   "Hi Binh, I would like to discuss a potential opportunity.";
 
@@ -40,77 +19,23 @@ export default function PortfolioContactForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(initialMessage || DEFAULT_MESSAGE);
-  const [turnstileToken, setTurnstileToken] = useState("");
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
   const [error, setError] = useState("");
-  const widgetContainer = useRef<HTMLDivElement>(null);
-  const widgetId = useRef<string | undefined>(undefined);
-  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
-
-  useEffect(() => {
-    if (!siteKey || !widgetContainer.current) return;
-
-    const render = () => {
-      if (!widgetContainer.current || !window.turnstile || widgetId.current)
-        return;
-      widgetId.current = window.turnstile.render(widgetContainer.current, {
-        sitekey: siteKey,
-        callback: (token) => setTurnstileToken(token),
-        "expired-callback": () => setTurnstileToken(""),
-        "error-callback": () => {
-          setTurnstileToken("");
-          setError("Contact verification failed. Please try again.");
-        },
-      });
-    };
-
-    if (window.turnstile) {
-      render();
-      return;
-    }
-
-    const existingScript = document.querySelector<HTMLScriptElement>(
-      `script[src^="${TURNSTILE_SCRIPT}"]`,
-    );
-    if (existingScript) {
-      existingScript.addEventListener("load", render);
-      return () => existingScript.removeEventListener("load", render);
-    }
-
-    const script = document.createElement("script");
-    script.src = TURNSTILE_SCRIPT;
-    script.async = true;
-    script.defer = true;
-    script.addEventListener("load", render);
-    document.head.appendChild(script);
-    return () => script.removeEventListener("load", render);
-  }, [siteKey]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (status === "sending") return;
     setError("");
-
-    if (!siteKey || !turnstileToken) {
-      setStatus("error");
-      setError(
-        siteKey
-          ? "Complete contact verification before sending."
-          : "Contact verification is not configured.",
-      );
-      return;
-    }
-
     setStatus("sending");
+
     try {
       await sendPortfolioContact({
         name,
         email,
         message,
-        turnstileToken,
         website,
       });
       setStatus("success");
@@ -121,9 +46,6 @@ export default function PortfolioContactForm({
           ? requestError.message
           : "Unable to send message right now. Please try again.",
       );
-      if (widgetId.current && window.turnstile)
-        window.turnstile.reset(widgetId.current);
-      setTurnstileToken("");
     }
   };
 
@@ -254,11 +176,6 @@ export default function PortfolioContactForm({
             value={website}
             onChange={(event) => setWebsite(event.target.value)}
             aria-hidden="true"
-          />
-          <div
-            ref={widgetContainer}
-            className="min-h-[65px]"
-            aria-label="Contact verification"
           />
         </div>
         {error && (

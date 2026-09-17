@@ -2,7 +2,6 @@ export type PortfolioContactPayload = {
   name: string;
   email: string;
   message: string;
-  turnstileToken: string;
   website?: string;
 };
 

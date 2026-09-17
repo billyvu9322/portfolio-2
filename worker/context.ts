@@ -4,6 +4,8 @@ export type Profile = {
   };
   hero: {
     name: string;
+    nameVietnamese?: string;
+    aliases?: string[];
     role: string;
     description: string;
     location: string;
@@ -56,7 +58,10 @@ export function getRelevantContext(question: string, profile: Profile, language:
   const linkedIn = profile.contact.socials.find((social) => social.label === "LinkedIn")?.href;
   const portfolioUrl = profile.contact.socials.find((social) => social.label === "Portfolio")?.href ?? profile.meta.url;
   const responseLanguage = language === "vi" ? "Vietnamese" : "English";
-  const base = `You are ${profile.hero.name}'s professional HR portfolio assistant. Answer only from the portfolio facts below. Keep answers to 2–4 short sentences or a compact bullet list. Never invent employers, dates, metrics, education details, locations, technologies, or project claims. If the portfolio does not contain an answer, say that it is not listed and suggest contacting ${profile.hero.name} directly. Focus on role fit, capabilities, shipped work, availability, and contact details.
+  const names = [profile.hero.name, profile.hero.nameVietnamese, ...(profile.hero.aliases ?? [])]
+    .filter((name): name is string => Boolean(name))
+    .join(", ");
+  const base = `You are ${profile.hero.name}'s professional HR portfolio assistant. The person may also be referred to as ${names}. Answer only from the portfolio facts below. Keep answers to 2–4 short sentences or a compact bullet list. Never invent employers, dates, metrics, education details, locations, technologies, or project claims. If the portfolio does not contain an answer, say that it is not listed and suggest contacting ${profile.hero.name} directly. Focus on role fit, capabilities, shipped work, availability, and contact details.
 
 GROUNDING RULES — MANDATORY:
 - Use only facts explicitly provided in the portfolio context below.

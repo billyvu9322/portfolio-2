@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Tat Binh Vu | Full-Stack Software Engineer",
-    "description": "Tat Binh Vu is a Full-Stack Software Engineer with 5+ years of experience building scalable web applications, enterprise integrations, and AI-powered automation systems.",
+    "description": "Tat Binh Vu is a Full-Stack Software Engineer in Hanoi with 5+ years building scalable web applications and enterprise solutions using C#/.NET, Node.js, React, and Next.js, with expertise in SaaS integrations, cloud infrastructure, and AI-powered automation.",
     "url": "https://binhvu.nimo.io.vn",
     "siteName": "Tat Binh Vu | Portfolio",
     "author": "Tat Binh Vu",
@@ -16,17 +16,27 @@
       ".NET 8",
       "C#",
       "Node.js",
+      "Fastify",
       "React",
+      "Next.js",
       "TypeScript",
+      "Microsoft Azure",
       "Microsoft Graph",
       "Exchange Online",
+      "Microsoft Teams",
+      "Outlook",
       "RabbitMQ",
       "Azure Event Hubs",
+      "Redis",
       "Docker",
       "Shopify App Development",
+      "Shopify Remix",
       "PostgreSQL",
       "SQL Server",
       "Wix App Development",
+      "MCP Servers",
+      "AI Automation",
+      "Azure Developer Associate",
       "Hanoi"
     ],
     "ogImage": "/images/print.webp"
@@ -56,7 +66,7 @@
   ],
 
   "hero": {
-    "location": "Hanoi Capital Region, Vietnam",
+    "location": "Hanoi, Vietnam",
     "name": "Tat Binh Vu",
     "nameVietnamese": "Tất Bình Vũ",
     "aliases": [
@@ -65,7 +75,15 @@
       "bình",
       "Binh",
       "Tất Bình Vũ",
-      "Tat Binh Vu"
+      "Tat Binh Vu",
+      "Tất Bình",
+      "Tất Vũ",
+      "Tất",
+      "Bình Vũ",
+      "Bình Vu",
+      "bÌnh",
+      "bÌnh vũ",
+      "bÌnh vU"
     ],
     "role": "Full-Stack Software Engineer",
     "headline": [
@@ -82,7 +100,7 @@
         "type": "stroke-accent"
       }
     ],
-    "description": "Full-Stack Software Engineer with 5+ years of experience building scalable, high-performance web applications and enterprise software with C#/.NET, Node.js, React, Next.js, cloud infrastructure, Docker, CI/CD, and AI-powered automation.",
+    "description": "Full-Stack Software Engineer with 5+ years building scalable, high-performance web applications and enterprise solutions using C#/.NET, Node.js, React, and Next.js. Experienced in backend/API design, third-party SaaS integrations, and cloud infrastructure (Docker, CI/CD), with growing expertise in AI-powered automation.",
     "primaryCta": {
       "label": "View Work",
       "href": "#work"
@@ -130,11 +148,11 @@
           "role": "Full-Stack Web Developer · Add-on Development",
           "overview": "A multi-tenant workplace sensor platform that helps organizations understand office usage and environmental conditions through connected sensor data and real-time insights.",
           "contributions": [
-            "Built secure authentication and authorization with JWT.",
-            "Built Microsoft Graph and Exchange Online integrations for calendar, user, and mailbox synchronization.",
-            "Developed React/TypeScript workflows and public REST APIs for Microsoft 365 solutions.",
-            "Implemented event-driven processing with RabbitMQ and Azure Event Hubs.",
-            "Built CI/CD pipelines and improved performance, observability, and production reliability."
+            "Built and maintained multi-tenant architecture with .NET 8 and React.",
+            "Engineered secure JWT authentication, authorization, and Exchange Online sync workflows for calendar, user, and mailbox data.",
+            "Developed high-performance public REST APIs and responsive React/TypeScript workflows.",
+            "Implemented event-driven architecture with RabbitMQ and Azure Event Hubs to improve throughput and reliability.",
+            "Set up Docker containers and automated CI/CD pipelines to streamline deployments and releases."
           ],
           "responsibilities": [
             "Developed multi-tenant workplace monitoring features.",
@@ -143,7 +161,7 @@
           ],
           "domain": ["Workplace management", "IoT sensor monitoring", "Microsoft 365 integration"],
           "outcome": "Organizations gain clearer visibility into workplace conditions and how office spaces are being used.",
-          "technologies": [".NET 8", "React", "TypeScript", "PostgreSQL", "RabbitMQ", "Azure Event Hubs", "Microsoft Graph", "Exchange Online", "JWT", "CI/CD"]
+          "technologies": [".NET 8", "React", "TypeScript", "PostgreSQL", "RabbitMQ", "Azure Event Hubs", "Microsoft Graph", "Exchange Online", "JWT", "Docker", "CI/CD"]
         }
       },
       {
@@ -165,7 +183,7 @@
         "imageAlt": "Group Calendar shared scheduling platform preview",
         "detail": {
           "slug": "group-calendar",
-          "role": "Full-stack Developer · Add-on Development",
+          "role": "Full-Stack Web Developer · Add-on Development",
           "overview": "A shared calendar management platform that helps teams coordinate schedules, manage group events, and stay aligned through centralized calendar views and Microsoft 365 integration.",
           "contributions": [
             "Developed calendar and meeting management features using React and TypeScript.",
@@ -202,7 +220,7 @@
         "imageAlt": "Madgic Hide Price Shopify app preview",
         "detail": {
           "slug": "madgic-hide-price",
-          "role": "Full-Stack Engineer",
+          "role": "Freelance Full-Stack Developer · iCommerce Vietnam",
           "overview": "A Shopify app that gives merchants flexible control over product price visibility across their storefront.",
           "contributions": [
             "Built .NET APIs and Shopify Theme Extensions.",
@@ -238,7 +256,7 @@
         "imageAlt": "Social Widgets TikTok and Instagram Feed Wix app preview",
         "detail": {
           "slug": "orichi-social-widgets",
-          "role": "Full-Stack Engineer",
+          "role": "Freelance Full-Stack Developer · iCommerce Vietnam",
           "overview": "A Wix app that helps merchants display TikTok and Instagram content through configurable storefront widgets.",
           "contributions": [
             "Built .NET APIs and Wix Site Extensions.",
@@ -357,11 +375,11 @@
     "heading": "About",
     "subheading": "Software Engineer & Builder",
 
-    "bio": "Full-Stack Software Engineer with 5+ years of experience building scalable web applications and enterprise solutions with C#/.NET, Node.js, React, cloud infrastructure, Docker, CI/CD, and AI-powered automation.",
+    "bio": "Full-Stack Software Engineer with 5+ years building scalable, high-performance web applications and enterprise solutions using C#/.NET, Node.js, React, and Next.js — focused on reliable, maintainable solutions that meet business needs.",
 
-    "proofLabel": "Proof",
+    "proofLabel": "Education & Certifications",
 
-    "proof": "Bachelor of Information Technology, University of Transport and Communications",
+    "proof": "Bachelor of Engineering in Information Technology, University of Transport and Communications (2017–2021) · Microsoft Certified: Azure Developer Associate, Azure Data Engineer Associate, Azure Network Engineer Associate",
 
     "skills": [
       {
@@ -396,7 +414,8 @@
           "C# / .NET",
           "Node.js / Fastify",
           "TypeScript / JavaScript",
-          "ReactJS / Next.js",
+          "React / Next.js",
+          "Shopify Remix",
           "HTML5 / CSS3"
         ]
       },
@@ -407,9 +426,10 @@
         "items": [
           "Microsoft Azure",
           "PostgreSQL / SQL Server / Redis",
-          "Docker / CI/CD Pipelines / Nginx",
+          "Docker / CI/CD Pipelines",
+          "System Design / API Design / Design Patterns",
           "Microservices / Event-Driven Architecture",
-          "RabbitMQ / Azure Event Hubs"
+          "RabbitMQ / Azure Event Hubs / Serilog"
         ]
       },
 
@@ -417,14 +437,13 @@
         "title": "AI & Integrations",
         "description": "Practical AI workflows, automation, and platform integrations for modern products.",
         "items": [
-          "RESTful API Design / GraphQL",
+          "RESTful APIs",
           "Microsoft Graph API / Exchange Online",
-          "Shopify App Development",
-          "Wix App Development",
+          "Shopify & Wix App Development",
           "JWT / OAuth2",
-          "AI Driven Workflows / Agentic Automation",
-          "Harness Design",
-          "OpenAI SDK / CrewAI"
+          "Claude Code / Codex",
+          "OpenAI SDK / MCP Servers",
+          "Agent Harness / AI-Driven Automation"
         ]
       }
     ],
@@ -457,7 +476,7 @@
   "contact": {
     "eyebrow": "Open to Full-Time Remote, Contract Roles & Technical Consulting",
     "heading": "Let's work together",
-    "email": "binhhp20@gmail.com",
+    "email": "binhvu@nimo.io.vn",
 
     "socials": [
       {

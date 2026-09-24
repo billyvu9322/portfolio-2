@@ -25,6 +25,8 @@
       "Exchange Online",
       "Microsoft Teams",
       "Outlook",
+      "OfficePlace Connect",
+      "Resource Central",
       "RabbitMQ",
       "Azure Event Hubs",
       "Redis",
@@ -126,7 +128,7 @@
     "projects": [
       {
         "title": "Workplace Sensor",
-        "year": "2021–2025",
+        "year": "2021–2026",
         "tagline": "Connected workplace monitoring platform",
         "description": "Workplace sensor solution that helps organizations understand office usage and environmental conditions through connected sensor data and real-time insights.",
         "tags": [
@@ -148,18 +150,18 @@
           "role": "Full-Stack Web Developer · Add-on Development",
           "overview": "A multi-tenant workplace sensor platform that helps organizations understand office usage and environmental conditions through connected sensor data and real-time insights.",
           "contributions": [
-            "Built and maintained multi-tenant architecture with .NET 8 and React.",
-            "Engineered secure JWT authentication, authorization, and Exchange Online sync workflows for calendar, user, and mailbox data.",
-            "Developed high-performance public REST APIs and responsive React/TypeScript workflows.",
-            "Implemented event-driven architecture with RabbitMQ and Azure Event Hubs to improve throughput and reliability.",
-            "Set up Docker containers and automated CI/CD pipelines to streamline deployments and releases."
+            "Built and maintained OfficePlace Connect, the multi-tenant .NET 8 replacement for the legacy RealTime Service for Microsoft 365 customers, integrating Microsoft Graph and Resource Central to manage 15,000+ resources for 100+ customer organizations, running cost-efficiently on a single small Azure server.",
+            "Developed REST APIs and Exchange Online sync workflows for resource mailboxes, calendars, and bookings, integrated with Resource Central (64 SaaS + 36 on-premises customers; 10M+ reservation records).",
+            "Implemented JWT authentication and event-driven multi-tenant sync using RabbitMQ and Azure Event Hubs.",
+            "Designed responsive UI and state management workflows using React and TypeScript.",
+            "Containerized services with Docker and automated CI/CD pipelines for cloud deployments."
           ],
           "responsibilities": [
-            "Developed multi-tenant workplace monitoring features.",
-            "Integrated workplace data with Microsoft 365 services.",
+            "Contributed to the Workplace Sensor Solution alongside OfficePlace Connect and Resource Central.",
+            "Integrated workplace and booking data with Microsoft 365 services.",
             "Collaborated within a six-member team to deliver reliable platform capabilities."
           ],
-          "domain": ["Workplace management", "IoT sensor monitoring", "Microsoft 365 integration"],
+          "domain": ["Workplace management", "IoT sensor monitoring", "Resource booking", "Microsoft 365 integration"],
           "outcome": "Organizations gain clearer visibility into workplace conditions and how office spaces are being used.",
           "technologies": [".NET 8", "React", "TypeScript", "PostgreSQL", "RabbitMQ", "Azure Event Hubs", "Microsoft Graph", "Exchange Online", "JWT", "Docker", "CI/CD"]
         }
@@ -206,7 +208,7 @@
         "title": "Request a Quote",
         "year": "2025",
         "tagline": "Shopify app for price visibility control",
-        "description": "Developed a Shopify app enabling B2B stores to hide prices, manage quote requests, and automate order conversion with React, .NET, PostgreSQL, and RabbitMQ.",
+        "description": "Built and maintained a Shopify app used by 6,300+ merchants, enabling B2B stores to hide prices, manage quote requests, and automate order conversion with React, .NET, PostgreSQL, and RabbitMQ.",
         "tags": [
           "React",
           ".NET",
@@ -221,11 +223,12 @@
         "detail": {
           "slug": "madgic-hide-price",
           "role": "Freelance Full-Stack Developer · iCommerce Vietnam",
-          "overview": "A Shopify app that gives merchants flexible control over product price visibility across their storefront.",
+          "overview": "Request A Quote & Hide Price — a Shopify app used by 6,300+ merchants that gives flexible control over product price visibility and quote requests across the storefront.",
           "contributions": [
-            "Built .NET APIs and Shopify Theme Extensions.",
-            "Implemented price visibility and quote request workflows.",
-            "Developed storefront features with React and TypeScript."
+            "Built and maintained the app end to end, from .NET APIs to storefront features.",
+            "Implemented price visibility, quote request, and quote automation workflows.",
+            "Built storefront widgets using Metafields, Theme Extensions, React, and TypeScript.",
+            "Developed .NET APIs backed by PostgreSQL, using RabbitMQ for messaging."
           ],
           "responsibilities": [
             "Translated merchant requirements into product functionality.",
@@ -384,12 +387,12 @@
     "skills": [
       {
         "title": "Full-Stack Software Engineering",
-        "description": "Designing, building, and maintaining scalable web applications with a focus on reliability, performance, and maintainability."
+        "description": "Designing, building, and maintaining scalable web applications and Microsoft 365 integrations — managing 15,000+ resources for 100+ customer organizations, running cost-efficiently on a single small Azure server."
       },
 
       {
         "title": "E-Commerce & Systems Integration",
-        "description": "Developing Shopify and Wix applications, integrating multi-channel APIs, third-party services, and SaaS platforms."
+        "description": "Building Shopify apps end to end — Request A Quote & Hide Price (6,300+ merchants), Swatches (2,800+), and Social Media (5,300+) — plus Wix apps and multi-channel API integrations."
       },
 
       {

@@ -33,6 +33,10 @@
       "Docker",
       "Shopify App Development",
       "Shopify Remix",
+      "Shopify GraphQL Admin API",
+      "Shopify Webhooks",
+      "Theme App Extensions",
+      "Core Web Vitals",
       "PostgreSQL",
       "SQL Server",
       "Wix App Development",
@@ -208,7 +212,7 @@
         "title": "Request a Quote",
         "year": "2025",
         "tagline": "Shopify app for price visibility control",
-        "description": "Built and maintained a Shopify app used by 6,300+ merchants, enabling B2B stores to hide prices, manage quote requests, and automate order conversion with React, .NET, PostgreSQL, and RabbitMQ.",
+        "description": "Built and maintained a Shopify app enabling B2B stores to hide prices, manage quote requests, and automate order conversion with React, .NET, PostgreSQL, and RabbitMQ.",
         "tags": [
           "React",
           ".NET",
@@ -223,12 +227,13 @@
         "detail": {
           "slug": "madgic-hide-price",
           "role": "Freelance Full-Stack Developer · iCommerce Vietnam",
-          "overview": "Request A Quote & Hide Price — a Shopify app used by 6,300+ merchants that gives flexible control over product price visibility and quote requests across the storefront.",
+          "overview": "Request A Quote & Hide Price — a Shopify app that gives merchants flexible control over product price visibility and quote requests across the storefront.",
           "contributions": [
             "Built and maintained the app end to end, from .NET APIs to storefront features.",
-            "Implemented price visibility, quote request, and quote automation workflows.",
-            "Built storefront widgets using Metafields, Theme Extensions, React, and TypeScript.",
-            "Developed .NET APIs backed by PostgreSQL, using RabbitMQ for messaging."
+            "Implemented configurable price visibility, quote request, and quote-to-order automation workflows.",
+            "Integrated the Shopify GraphQL Admin API and Order Webhooks for order and product data.",
+            "Built storefront widgets via Theme App Extensions, App Blocks, and Metafields (React/TypeScript), optimized for Core Web Vitals.",
+            "Developed .NET APIs backed by PostgreSQL, processing jobs via RabbitMQ queues."
           ],
           "responsibilities": [
             "Translated merchant requirements into product functionality.",
@@ -237,7 +242,7 @@
           ],
           "domain": ["E-commerce", "Shopify app development", "Price management"],
           "outcome": "Merchants can manage when and how product prices appear for different storefront scenarios.",
-          "technologies": ["React", ".NET", "PostgreSQL", "RabbitMQ", "Shopify"]
+          "technologies": ["React", ".NET", "PostgreSQL", "RabbitMQ", "Shopify", "GraphQL Admin API", "Webhooks", "Theme App Extensions"]
         }
       },
       {
@@ -392,7 +397,7 @@
 
       {
         "title": "E-Commerce & Systems Integration",
-        "description": "Building Shopify apps end to end — Request A Quote & Hide Price (6,300+ merchants), Swatches (2,800+), and Social Media (5,300+) — plus Wix apps and multi-channel API integrations."
+        "description": "Building Shopify apps end to end — Request A Quote & Hide Price, Swatches, COD, Bundle, and Social Media — on the GraphQL Admin API and Order Webhooks, with fast-loading Theme App Extensions and scalable .NET and Node.js backends, plus Wix apps."
       },
 
       {
@@ -443,6 +448,7 @@
           "RESTful APIs",
           "Microsoft Graph API / Exchange Online",
           "Shopify & Wix App Development",
+          "Shopify GraphQL Admin API / Webhooks",
           "JWT / OAuth2",
           "Claude Code / Codex",
           "OpenAI SDK / MCP Servers",
